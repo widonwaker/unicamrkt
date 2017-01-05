@@ -173,11 +173,13 @@ li.circle:nth-child(4),li.circle:nth-child(5) {
     float: left;
     width: 33.333%;
     text-align: center;
+	margin-top:15px;
 }
 .profile-left {
     float: left;
     width: 33.3333%;
     text-align: center;
+	margin-top:15px;
 }
 h5.pro-link {
     text-align: center;
@@ -188,6 +190,7 @@ h5.pro-link {
     float: right;
     width: 33.3333%;
     text-align: center;
+	margin-top:15px;
 }
 .Profile-right i{
     font-size: 20px;
@@ -280,7 +283,7 @@ h5.pro-link {
     margin-bottom: 0px;
        background: rgb(30, 31, 33);
     width: auto;
-    height: 780px !important;
+    height: /*780px*/ 100vh !important;
     width: 15.625em !important;
     border: 0 solid transparent !important;
     border-radius: 0 !important;
@@ -2213,8 +2216,11 @@ input[type="file"] {
 .ui-link {
 	text-decoration: none;
 }
-#indexhome {
+#indexhome, #register, #login {
 	background-color: #F7F7F7;
 }
-
+.applink {
+	color: #EA6153;
+	font-size: x-small;
+}
 
