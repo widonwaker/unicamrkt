@@ -1656,7 +1656,7 @@ textarea {
 }
 form {
     padding: 0 1em;
-}.send input[type="submit"] {
+}.send input[type="submit"], .submitbtn {
     border: none;
     background:#EA6153;
     cursor: pointer;
