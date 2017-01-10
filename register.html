@@ -43,9 +43,7 @@ function register(){
 $.post("http://myappmarketing.it/amministra/production/regapp.php", {nome:$("#nome").val(), email:$("#email").val(), pass:$("#pass").val()}).done(function(data){
 if(data){
 function SuccessDismiss() {
-    setTimeout(function () {
-       window.location.href= 'login.html'; // the redirect goes here
-    },1500);
+   location.href='login.html'
 }	
 navigator.notification.alert(
     'Registrazione effettuata',  // message
@@ -55,9 +53,7 @@ navigator.notification.alert(
 );
 }else{
 function FailedDismiss() {
-    setTimeout(function () {
-       window.location.href= 'register.html'; // the redirect goes here
-    },1500);
+    location.href='register.html'
 }	
 navigator.notification.alert(
     'Registrazione effettuata',  // message
