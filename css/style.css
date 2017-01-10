@@ -1523,11 +1523,11 @@ h3.tittle.reserve {
     color: #777;
     border: 2px solid #EA6153;
 }
-.make {
+.make, .submitbtn {
     margin:0em auto 0;
     text-align: center;
 }
-.make input[type=submit] {
+.make input[type=submit], .submitbtn {
        color: #fff;
     padding: 1em 2em;
     font-size: 1em;
@@ -1536,7 +1536,7 @@ h3.tittle.reserve {
     outline: none;
     background: #EA6153;
 }
-.make input[type=submit]:hover {
+.make input[type=submit]:hover, .submitbtn {
     background: none;
     transition: 0.5s all ease;
     -webkit-transition: 0.5s all ease;
