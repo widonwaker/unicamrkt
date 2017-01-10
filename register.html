@@ -48,7 +48,7 @@ function FailedDismiss() {
 
 function register(){
 $.post("http://myappmarketing.it/amministra/production/regapp.php", {nome:$("#nome").val(), email:$("#email").val(), pass:$("#pass").val()}).done(function(data){
-if(data){
+if(!data){
 navigator.notification.alert(
     'Registrazione effettuata',  // message
     SuccessDismiss,         // callback
@@ -57,7 +57,7 @@ navigator.notification.alert(
 );
 }else{
 navigator.notification.alert(
-    'Email già esistente',  // message
+    'Probabilmente l\'email che hai inserito è già presente nel nostro archivio. Inoltre, assicurati di inserire nome e cognome.',  // message
     FailedDismiss,         // callback
     'Errore!',            // title
     'Riprova'                  // buttonName
