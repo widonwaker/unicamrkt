@@ -42,9 +42,29 @@
 function register(){
 $.post("http://myappmarketing.it/amministra/production/regapp.php", {nome:$("#nome").val(), email:$("#email").val(), pass:$("#pass").val()}).done(function(data){
 if(data){
-alert("Registrazione effettuata.");
+function SuccessDismiss() {
+    setTimeout(function () {
+       window.location.href= 'login.html'; // the redirect goes here
+    },1500);
+}	
+navigator.notification.alert(
+    'Registrazione effettuata',  // message
+    SuccessDismiss,         // callback
+    'Congratulazioni!',            // title
+    'Ok'                  // buttonName
+);
 }else{
-alert("Errore.");
+function FailedDismiss() {
+    setTimeout(function () {
+       window.location.href= 'register.html'; // the redirect goes here
+    },1500);
+}	
+navigator.notification.alert(
+    'Registrazione effettuata',  // message
+    FailedDismiss,         // callback
+    'Congratulazioni!',            // title
+    'Ok'                  // buttonName
+);
 }
 });
 }
