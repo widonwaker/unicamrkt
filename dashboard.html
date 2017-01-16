@@ -54,14 +54,12 @@ function loading(showOrHide) {
 }
         
 		    var usermail = window.localStorage.getItem("email");
-            $.ajax('http://myappmarketing.it/amministra/production/app_profile.php?email=' + usermail, 
+            $.ajax('http://myappmarketing.it/amministra/production/app_profile.php', 
                 {
-                    dataType: "json",
-                    jsonp: "jsoncallback",
-                    method: 'get',
-                    contentType: 'application/json',
-                    success: function (data, status) {
-                        $.each(data, function (i, item) {
+                    type: 'POST',
+					data: { email: usermail },
+                    success: function (response, status) {
+                        $.each(response, function (i, item) {
 						   document.getElementById("usertitle").innerHTML = item.nome + ' ' + item.cognome;
                         });
 
@@ -161,15 +159,6 @@ function loading(showOrHide) {
 </div> <!-- end homepage -->
 
 
-<script>
-$('#homeurl').click(function () {
-$("#indexhome").fadeOut(500,function(){
-     $('body').load('dashboard.html', function () {
-    $("#indexhome").slideDown(1000);
-})
-});
-
-return false;});
-</script>      
+  
 </body>
 </html>
