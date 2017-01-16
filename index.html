@@ -114,7 +114,13 @@ return false;});
 				
                 if (response === "ok") {
 					window.localStorage.setItem("loggedIn", 1);
-                    location.href='dashboard.html';
+			navigator.notification.alert(
+                    'Tutt appost',  // message
+                    SuccessDismiss,         // callback
+                    'Buon!',            // title
+                    'Ok'                  // buttonName
+                   ); // fine alert
+			                    location.href='dashboard.html';
                 }
 
                 if (response === "nope") {
