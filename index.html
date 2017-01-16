@@ -96,6 +96,9 @@ return false;});
 </script>       
 
  <script>
+ function FailedDismiss() {
+   location.href='index.html';
+}
     var form = document.getElementById('login_form'),
 	    email = document.getElementById('email');
         password = document.getElementById('password');
@@ -112,21 +115,25 @@ return false;});
                 // if the response is json encoded
                 var response = JSON.parse(xhr.responseText);
 				
-                if (response === "ok") {
-					window.localStorage.setItem("loggedIn", 1);
-			navigator.notification.alert(
-                    'Tutt appost',  // message
+				if (response === "err") {
+                    navigator.notification.alert(
+                    'Errore indefinito.',  // message
                     SuccessDismiss,         // callback
-                    'Buon!',            // title
+                    'Errore!',            // title
                     'Ok'                  // buttonName
                    ); // fine alert
-			                    location.href='dashboard.html';
+                }
+				
+                if (response === "ok") {
+					window.localStorage.setItem("loggedIn", 1);
+                    location.href='dashboard.html';
+					alert("ok");
                 }
 
                 if (response === "nope") {
                     navigator.notification.alert(
                     'Email e password non corrispondono. Riprova.',  // message
-                    SuccessDismiss,         // callback
+                    FailedDismiss,         // callback
                     'Errore!',            // title
                     'Ok'                  // buttonName
                    ); // fine alert
