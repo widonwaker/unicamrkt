@@ -126,6 +126,7 @@ return false;});
 				
                 if (response === "ok") {
 					window.localStorage.setItem("loggedIn", 1);
+					window.localStorage.setItem("email", email);
                     location.href='dashboard.html';
 					
                 }

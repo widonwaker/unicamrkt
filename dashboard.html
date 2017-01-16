@@ -38,6 +38,40 @@
 		<!--script-->
 		<link href='//fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
 		<link href='//fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic' rel='stylesheet' type='text/css'>
+        
+<script type="text/javascript">
+$(document).on({
+    ajaxSend: function () { loading('show'); },
+    ajaxStart: function () { loading('show'); },
+    ajaxStop: function () { loading('hide'); },
+    ajaxError: function () { loading('hide'); }
+});
+ 
+function loading(showOrHide) {
+    setTimeout(function(){
+        $.mobile.loading(showOrHide);
+    }, 1); 
+}
+        
+		    var usermail = window.localStorage.getItem("email");
+            $.ajax('http://myappmarketing.it/amministra/production/app_profile.php?email=' + usermail, 
+                {
+                    dataType: "json",
+                    jsonp: "jsoncallback",
+                    method: 'get',
+                    contentType: 'application/json',
+                    success: function (data, status) {
+                        $.each(data, function (i, item) {
+						   document.getElementById("usertitle").innerHTML = item.nome + ' ' + item.cognome;
+                        });
+
+                    },
+                    error: function (xhr, d, s) {
+                        //
+                    }
+                });
+       
+    </script>        
     </head>
 <body>
 <div data-role="page" id="indexhome">
@@ -47,11 +81,11 @@
 			<div class="wrap-content">
 				<div class="profile-menu text-center">
 					<img class="img-circle border-effect" src="images/pic3.png" alt=" ">
-						<h3>John Leo</h3>
-						<p>Admin</p>
+						<h3 id="usertitle"></h3>
+						<p><!--Utente--></p>
 						<div class="pro-menu">
 							<div class="logo">
-								<li><a class=" link link--yaku scroll active" href="#home"><span>H</span><span>o</span><span>m</span><span>e</span></a></li>
+								<li><a class=" link link--yaku scroll active" href="#" id="homeurl"><span>H</span><span>o</span><span>m</span><span>e</span></a></li>
 								<li><a class=" link link--yaku scroll" href="#about"><span>A</span><span>b</span><span>o</span><span>u</span><span>t</span></a></li>
 								<li><a class=" link link--yaku scroll" href="#service"><span>S</span><span>e</span><span>r</span><span>v</span><span>i</span><span>c</span><span>e</span><span>s</span></a></li>
 								<li><a class=" link link--yaku scroll" href="#recipes"><span>O</span><span>u</span><span>r</span> <span>R</span><span>e</span><span>c</span><span>i</span><span>p</span><span>e</span><span>s</span></a></li>
@@ -127,6 +161,15 @@
 </div> <!-- end homepage -->
 
 
+<script>
+$('#homeurl').click(function () {
+$("#indexhome").fadeOut(500,function(){
+     $('body').load('dashboard.html', function () {
+    $("#indexhome").slideDown(1000);
+})
+});
 
+return false;});
+</script>      
 </body>
 </html>
