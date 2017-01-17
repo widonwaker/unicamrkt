@@ -40,19 +40,7 @@
 		<link href='//fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic' rel='stylesheet' type='text/css'>
         
 <script type="text/javascript">
-$(document).on({
-    ajaxSend: function () { loading('show'); },
-    ajaxStart: function () { loading('show'); },
-    ajaxStop: function () { loading('hide'); },
-    ajaxError: function () { loading('hide'); }
-});
- 
-function loading(showOrHide) {
-    setTimeout(function(){
-        $.mobile.loading(showOrHide);
-    }, 1); 
-}
-        
+   alert (window.localStorage.getItem("email"));     
 		    var usermail = window.localStorage.getItem("email");
             $.ajax('http://myappmarketing.it/amministra/production/app_profile.php', 
                 {
