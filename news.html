@@ -56,7 +56,45 @@
                     }
                 });
        
-    </script>        
+    </script>    
+<script type="text/javascript">
+$(document).on({
+    ajaxSend: function () { loading('show'); },
+    ajaxStart: function () { loading('show'); },
+    ajaxStop: function () { loading('hide'); },
+    ajaxError: function () { loading('hide'); }
+});
+ 
+function loading(showOrHide) {
+    setTimeout(function(){
+        $.mobile.loading(showOrHide);
+    }, 1); 
+}
+        
+            $.ajax('http://myappmarketing.it/amministra/production/app_news.php', 
+                {
+                    dataType: "json",
+                    jsonp: "jsoncallback",
+                    method: 'get',
+                    contentType: 'application/json',
+                    success: function (data, status) {
+              		    //var _ul = $('<div />').attr('class', 'month-graph');
+                        $.each(data, function (i, item) {
+                            $('<div />').attr('class', 'about-gd')
+							     .append('<div class="about-gd-left"><h5>' + item.data.substring(0,5) + '</h5></div>')
+                                 .append('<div class="about-gd-right"><p>' + item.descrizione + '</p></div>')
+                                 .append('<div class="clearfix"> </div>')
+                            .appendTo('.month-graph');
+							
+                        });
+                        //$('#output').empty().append(_ul).enhanceWithin();//.listview();*/
+                    },
+                    error: function (xhr, d, s) {
+                       // $('#output').empty().html(s);
+                    }
+                });
+       
+    </script>     
     </head>
 <body>
 <div data-role="page" id="indexhome">
@@ -90,49 +128,23 @@
 					<a href="#menu" class="menu-link"><i class="fa fa-user"></i></a>
 				</div>
 				<div class="Profile-mid">
-					<h5 class="pro-link">Dashboard</h5>
+					<h5 class="pro-link">News</h5>
 				</div>
 				<div class="Profile-right">
-              <!-- EVENTUALE ICONA PROFILO DESTRO -->
+                   <a href="#" data-rel="back"><i class="fa fa-mail-reply"></i></a>
 				</div>
 				<div class="clearfix"></div>
 			</div> 
-            <div class="services">
-					<h3>Servizi</h3>
-						<div class="col-sm-6 goal-icons">
-							<div class="goal">
-								<div class=" hi-icon-effect-6">
-										<a href="#attivita" class="hi-icon glyphicon glyphicon-briefcase"></a>
-										 <h4>La Mia Attività</h4>
-								</div>
-							</div>
-						</div>
-						<div class="col-sm-6 goal-icons">
-							<div class="goal">
-								<div class=" hi-icon-effect-6">
-										<a href="#saldopunti" class="hi-icon glyphicon glyphicon-piggy-bank"></a>
-										 <h4>Saldo Punti</h4>
-								</div>
-							</div>
-						</div>
-						<div class="col-sm-6 goal-icons">
-							<div class="goal">
-								<div class=" hi-icon-effect-6">
-										<a href="#set-6" class="hi-icon glyphicon glyphicon-tag"></a>
-										 <h4>Coupons</h4>
-								</div>
-							</div>
-						</div>
-						<div class="col-sm-6 goal-icons">
-							<div class="goal">
-								<div class=" hi-icon-effect-6">
-										<a href="#" onClick="location.href='news.html'" class="hi-icon glyphicon glyphicon-comment"></a>
-										 <h4>News</h4>
-								</div>
-							</div>
-						</div>
-						<div class="clearfix"></div>
-				</div>
+											<div class="tab_img">
+												<div class="month-graph">
+													<h3><!--title--></h3>
+                                                       
+														
+														<!--contenuto da Ajax-->
+
+													
+												</div>
+											</div>
                 </div>
             
 
