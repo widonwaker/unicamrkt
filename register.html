@@ -40,7 +40,7 @@
 		<link href='//fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic' rel='stylesheet' type='text/css'>
 <script>
 function SuccessDismiss() {
-   location.href='index.html';
+   location.href='login.html';
 }	
 function FailedDismiss() {
     location.href='register.html';
@@ -114,7 +114,7 @@ navigator.notification.alert(
 <script>
 $('.applink').click(function () {
 $("#register").fadeOut(500,function(){
-     $('body').load('index.html', function () {
+     $('body').load('login.html', function () {
     $("#login").slideDown(1000);
 })
 });

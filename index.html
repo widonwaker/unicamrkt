@@ -5,9 +5,11 @@
 		<meta name="viewport" content="width=device-width; inizial-scale=1.0" >
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <script>
-        if(window.localStorage.getItem("loggedIn") == 1) {
-        location.href='dashboard.html';
-        }
+        if(window.localStorage.getItem("loggedIn") != 1) {
+            document.getElementById('menu_princ').style.display = "none";
+        } else {
+			document.getElementById('altro_menu').style.display = "none";
+		}
         </script>
         <!--font-awsome-css-->
            <link rel="stylesheet" href="css/font-awesome.min.css"> 
@@ -25,7 +27,8 @@
             <script src="js/jquery.mobile.custom.min.js"></script>
 			<script src="js/bootstrap.min.js"></script>
 			 <!--script-->
-			 
+             
+			<script src="js/w3data.js"></script>
             <script src="js/bigSlide.js"></script>
             <script>
 				$(document).ready(function() {
@@ -43,107 +46,108 @@
 		<!--script-->
 		<link href='//fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
 		<link href='//fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic' rel='stylesheet' type='text/css'>
+        
+<script type="text/javascript">    
+		    var usermail = window.localStorage.getItem("email");
+            $.ajax('http://myappmarketing.it/amministra/production/app_profile.php', 
+                {
+                    type: 'POST',
+					data: { email: usermail },
+                    success: function (response, status) {
+                        $.each(response, function (i, item) {
+						   document.getElementById("usertitle").innerHTML = item.nome + ' ' + item.cognome;
+                        });
+
+                    },
+                    error: function (xhr, d, s) {
+                        //
+                    }
+                });
+       
+    </script>        
     </head>
-
 <body>
-<div data-role="page" id="login">
-			<div class="contact" id="contact">
-					<div class="contact-bottom">
-						<div class="contact_inner">
-							
-							<div class="menu-notify">
-								 <div class="profile-left">
-					               <p style="visibility: hidden;">-</p>
-				                 </div>
-								<div class="Profile-mid">
-									<h5 class="pro-link">Benvenuto</h5>
-								</div>
-								<div class="Profile-right">
-									<!-- niente -->
-								</div>
-								<div class="clearfix"></div>
-							</div>
-							<h3><!--Login--></h3>
+<div data-role="page" id="indexhome">
+<div class="body-back">
+	<div class="masthead pdng-stn1">
+		<div id="menu" class="panel" role="navigation">
+			<div class="wrap-content">
+				<div class="profile-menu text-center">
+					<img class="img-circle border-effect" src="images/pic3.png" alt=" ">
+						<h3 id="usertitle"></h3>
+						<p><!--Utente--></p>
+						<div class="pro-menu">
+                         
+				        <div w3-include-html="menu.html"></div>
+
 						</div>
-						<div class="sing-up-icon text-center"></div>
-					<form id="login_form" method="post" action="">
-									<div class="styled-input">
-									  <input type="email" id="email" name="email" required />
-									  <label>Email</label>
-									  <span></span> </div>
-                                      <div class="styled-input">
-									  <input type="password" id="password" name="password" required />
-									  <label>Password</label>
-									  <span></span> </div>
-										<div class="send">
-											<input type="submit" value="Entra" />
-										</div>
-						     </form>
-                            <br><a href="#" class="applink"><p align="center">Non hai un account? <br>Registrati ora</p></a>
-					</div>
+				</div>
 			</div>
-       </div> <!--fine jquery page -->   
- 
-<script>
-$('.applink').click(function () {
-$("#login").fadeOut(500,function(){
-     $('body').load('register.html', function () {
-    $("#register").slideDown(1000);
-})
-});
+		</div>
+		<div class="phone-box wrap push" id="home">
+        <div class="parker" id="service">
+			<div class="menu-notify" data-role="header">
+				<div class="profile-left">
+					<a href="#menu" class="menu-link"><i class="fa fa-user"></i></a>
+				</div>
+				<div class="Profile-mid">
+					<h5 class="pro-link">Unica</h5>
+				</div>
+				<div class="Profile-right">
+              <!-- EVENTUALE ICONA PROFILO DESTRO -->
+				</div>
+				<div class="clearfix"></div>
+			</div> 
+            <div class="services">
+					<h3>Servizi</h3>
+						<div class="col-sm-6 goal-icons">
+							<div class="goal">
+								<div class=" hi-icon-effect-6">
+										<a href="#attivita" class="hi-icon glyphicon glyphicon-briefcase"></a>
+										 <h4>La Mia Attività</h4>
+								</div>
+							</div>
+						</div>
+						<div class="col-sm-6 goal-icons">
+							<div class="goal">
+								<div class=" hi-icon-effect-6">
+										<a href="#saldopunti" class="hi-icon glyphicon glyphicon-piggy-bank"></a>
+										 <h4>Saldo Punti</h4>
+								</div>
+							</div>
+						</div>
+						<div class="col-sm-6 goal-icons">
+							<div class="goal">
+								<div class=" hi-icon-effect-6">
+										<a href="#set-6" class="hi-icon glyphicon glyphicon-tag"></a>
+										 <h4>Coupons</h4>
+								</div>
+							</div>
+						</div>
+						<div class="col-sm-6 goal-icons">
+							<div class="goal">
+								<div class=" hi-icon-effect-6">
+										<a href="#" onClick="location.href='news.html'" class="hi-icon glyphicon glyphicon-comment"></a>
+										 <h4>News</h4>
+								</div>
+							</div>
+						</div>
+						<div class="clearfix"></div>
+				</div>
+                </div>
+            
 
-return false;});
-</script>       
 
- <script>
- function FailedDismiss() {
-   location.href='index.html';
-}
-    var form = document.getElementById('login_form'),
-	    email = document.getElementById('email');
-        password = document.getElementById('password');
 
-    form.addEventListener('submit', function(event) {
-        event.preventDefault();
 
-        var data = new FormData(form);
+						
+  </div>
+</div>
+</div>
+</div> <!-- end homepage -->
 
-        var xhr = new XMLHttpRequest();
-        xhr.open('POST', 'http://myappmarketing.it/amministra/production/loginapp.php');
-        xhr.onload = function() {
-            if (xhr.status === 200) {
-                // if the response is json encoded
-                var response = JSON.parse(xhr.responseText);
-				
-				if (response === "err") {
-                    navigator.notification.alert(
-                    'Errore indefinito.',  // message
-                    SuccessDismiss,         // callback
-                    'Errore!',            // title
-                    'Ok'                  // buttonName
-                   ); // fine alert
-                }
-				
-                if (response === "ok") {
-					newmail = document.getElementById('email').value;
-					window.localStorage.setItem("loggedIn", 1);
-					window.localStorage.setItem("email", newmail);
-                    location.href='dashboard.html';
-					
-                }
-
-                if (response === "nope") {
-                    navigator.notification.alert(
-                    'Email e password non corrispondono. Riprova.',  // message
-                    FailedDismiss,         // callback
-                    'Errore!',            // title
-                    'Ok'                  // buttonName
-                   ); // fine alert
-                }
-            }
-        }
-        xhr.send(data); 
-    });
-</script>  
+  <script>
+w3IncludeHTML();
+</script>
 </body>
 </html>

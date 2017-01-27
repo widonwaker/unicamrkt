@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="it">
+	<head>
+        <title>Marketing UNICA</title>
+		<meta name="viewport" content="width=device-width; inizial-scale=1.0" >
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <script>
+        if(window.localStorage.getItem("loggedIn") == 1) {
+        location.href='dashboard.html';
+        }
+        </script>
+        <!--font-awsome-css-->
+           <link rel="stylesheet" href="css/font-awesome.min.css"> 
+		<!--bootstrap-->
+			<link href="css/bootstrap.min.css" rel="stylesheet" type="text/css">
+		<!--custom css-->
+			<link href="css/style.css" rel="stylesheet" type="text/css"/>
+			<link rel="stylesheet" href="css/percircle.css">
+            <link rel="stylesheet" href="css/jquery.mobile.custom.structure.css">
+            
+        <!--component-css-->
+            <script type="text/javascript" src="js/index.js"></script>
+            <script type="text/javascript" charset="utf-8" src="cordova.js"></script>   
+			<script src="js/jquery-2.1.4.min.js"></script>
+            <script src="js/jquery.mobile.custom.min.js"></script>
+			<script src="js/bootstrap.min.js"></script>
+			 <!--script-->
+			 
+            <script src="js/bigSlide.js"></script>
+            <script>
+				$(document).ready(function() {
+				$('.menu-link').bigSlide();
+				});
+            </script>
+
+
+            <!--script-->
+			<!-- swipe box js -->
+<link rel="stylesheet" href="css/swipebox.css">
+
+
+			
+		<!--script-->
+		<link href='//fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+		<link href='//fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic' rel='stylesheet' type='text/css'>
+    </head>
+
+<body>
+<div data-role="page" id="login">
+			<div class="contact" id="contact">
+					<div class="contact-bottom">
+						<div class="contact_inner">
+							
+							<div class="menu-notify">
+								 <div class="profile-left">
+					               <p style="visibility: hidden;">-</p>
+				                 </div>
+								<div class="Profile-mid">
+									<h5 class="pro-link">Benvenuto</h5>
+								</div>
+								<div class="Profile-right">
+									<!-- niente -->
+								</div>
+								<div class="clearfix"></div>
+							</div>
+							<h3><!--Login--></h3>
+						</div>
+						<div class="sing-up-icon text-center"></div>
+					<form id="login_form" method="post" action="">
+									<div class="styled-input">
+									  <input type="email" id="email" name="email" required />
+									  <label>Email</label>
+									  <span></span> </div>
+                                      <div class="styled-input">
+									  <input type="password" id="password" name="password" required />
+									  <label>Password</label>
+									  <span></span> </div>
+										<div class="send">
+											<input type="submit" value="Entra" />
+										</div>
+						     </form>
+                            <br><a href="#" class="applink"><p align="center">Non hai un account? <br>Registrati ora</p></a>
+					</div>
+			</div>
+       </div> <!--fine jquery page -->   
+ 
+<script>
+$('.applink').click(function () {
+$("#login").fadeOut(500,function(){
+     $('body').load('register.html', function () {
+    $("#register").slideDown(1000);
+})
+});
+
+return false;});
+</script>       
+
+ <script>
+ function FailedDismiss() {
+   location.href='index.html';
+}
+    var form = document.getElementById('login_form'),
+	    email = document.getElementById('email');
+        password = document.getElementById('password');
+
+    form.addEventListener('submit', function(event) {
+        event.preventDefault();
+
+        var data = new FormData(form);
+
+        var xhr = new XMLHttpRequest();
+        xhr.open('POST', 'http://myappmarketing.it/amministra/production/loginapp.php');
+        xhr.onload = function() {
+            if (xhr.status === 200) {
+                // if the response is json encoded
+                var response = JSON.parse(xhr.responseText);
+				
+				if (response === "err") {
+                    navigator.notification.alert(
+                    'Errore indefinito.',  // message
+                    SuccessDismiss,         // callback
+                    'Errore!',            // title
+                    'Ok'                  // buttonName
+                   ); // fine alert
+                }
+				
+                if (response === "ok") {
+					newmail = document.getElementById('email').value;
+					window.localStorage.setItem("loggedIn", 1);
+					window.localStorage.setItem("email", newmail);
+                    location.href='dashboard.html';
+					
+                }
+
+                if (response === "nope") {
+                    navigator.notification.alert(
+                    'Email e password non corrispondono. Riprova.',  // message
+                    FailedDismiss,         // callback
+                    'Errore!',            // title
+                    'Ok'                  // buttonName
+                   ); // fine alert
+                }
+            }
+        }
+        xhr.send(data); 
+    });
+</script>  
+</body>
+</html>
