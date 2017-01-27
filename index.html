@@ -69,8 +69,15 @@
 					<img class="img-circle border-effect" src="images/pic3.png" alt=" ">
 						<h3 id="usertitle"></h3>
 						<p><!--Utente--></p>
-						<div class="pro-menu" id="pro-menu-content">
-                         
+						<div class="pro-menu">
+                        <div class="logo" id="menu_princ">
+								<li><a class=" link link--yaku scroll active" href="#" id="homeurl"><span>H</span><span>o</span><span>m</span><span>e</span></a></li>
+								<li><a class=" link link--yaku scroll" href="#" onClick="location.href='logout.html'"><span>E</span><span>s</span><span>c</span><span>i</span></a></li>
+							</div>
+                            
+                            <div class="logo" id="altro_menu">
+                            <li><a class=" link link--yaku scroll" href="#" onClick="location.href='login.html'">Entra come commerciante</a></li>
+                            </div>
 
 						</div>
 				</div>
@@ -140,7 +147,7 @@
 
 <script>
 $(document).ready(function() {
-    $("#pro-menu-content").load("menu.html");
+
 	    if(window.localStorage.getItem("loggedIn") != 1) {
             document.getElementById('menu_princ').style.display = "none";
         } else {
