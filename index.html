@@ -141,13 +141,12 @@
 <script>
 $(document).ready(function() {
     $("#pro-menu-content").load("menu.html");
-});  
-
-        if(window.localStorage.getItem("loggedIn") != 1) {
+	    if(window.localStorage.getItem("loggedIn") != 1) {
             document.getElementById('menu_princ').style.display = "none";
         } else {
 			document.getElementById('altro_menu').style.display = "none";
 		}
+});  
 </script>
 </body>
 </html>
