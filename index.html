@@ -4,13 +4,6 @@
         <title>Marketing UNICA</title>
 		<meta name="viewport" content="width=device-width; inizial-scale=1.0" >
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-        <script>
-        if(window.localStorage.getItem("loggedIn") != 1) {
-            document.getElementById('menu_princ').style.display = "none";
-        } else {
-			document.getElementById('altro_menu').style.display = "none";
-		}
-        </script>
         <!--font-awsome-css-->
            <link rel="stylesheet" href="css/font-awesome.min.css"> 
 		<!--bootstrap-->
@@ -160,5 +153,12 @@
   <script>
 w3IncludeHTML();
 </script>
+        <script>
+        if(window.localStorage.getItem("loggedIn") != 1) {
+            document.getElementById('menu_princ').style.display = "none";
+        } else {
+			document.getElementById('altro_menu').style.display = "none";
+		}
+        </script>	
 </body>
 </html>
