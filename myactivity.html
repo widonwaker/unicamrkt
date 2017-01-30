@@ -40,14 +40,15 @@
 		<link href='//fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic' rel='stylesheet' type='text/css'>
 <script>
 function SuccessDismiss() {
-   location.href='login.html';
+   //location.href='login.html';
 }	
 function FailedDismiss() {
-    location.href='register.html';
+    //location.href='register.html';
 }	
 
 function register(){
-$.post("http://myappmarketing.it/amministra/production/regapp.php", {nome:$("#nome").val(), email:$("#email").val(), pass:$("#pass").val()}).done(function(data){
+var usermail = window.localStorage.getItem("email");
+$.post("http://myappmarketing.it/amministra/production/regactivity.php", {nome:$("#nome").val(), email: usermail, desc:$("#desc").val(), file:$("#file").val()}).done(function(data){
 if(!data){
 navigator.notification.alert(
     'Registrazione effettuata',  // message
@@ -71,15 +72,13 @@ navigator.notification.alert(
 <body>
 <div data-role="page" id="register">
 			<div class="contact" id="contact">
-					<div class="contact-bottom">
-						<div class="contact_inner">
-							
+
 							<div class="menu-notify">
 								 <div class="profile-left">
 					               <p style="visibility: hidden;">-</p>
 				                 </div>
 								<div class="Profile-mid">
-									<h5 class="pro-link">Registrati</h5>
+									<h5 class="pro-link">Attività</h5>
 								</div>
 								<div class="Profile-right">
 									<a href="#" onClick="location.href='index.html'"><i class="fa fa-mail-reply"></i></a>
@@ -87,39 +86,29 @@ navigator.notification.alert(
 								<div class="clearfix"></div>
 							</div>
 							<h3><!--Nuovo Utente--></h3>
-						</div>
+
 						<div class="sing-up-icon text-center"></div>
 					<form>
 									<div class="styled-input">
 									  <input type="text" name="nome" id="nome" required />
-									  <label>Nome e Cognome</label>
+									  <label>Nome</label>
 									  <span></span> </div>
 									<div class="styled-input">
-									  <input type="email" name="email" id="email" required />
-									  <label>Email</label>
+									  <textarea name="desc" id="desc" required ></textarea>
+									  <label>Descrizione</label>
 									  <span></span> </div>
                                       <div class="styled-input">
-									  <input type="password" name="pass" id="pass" required />
-									  <label>Password</label>
+									  <input type="file" name="file" id="file" />
 									  <span></span> </div>
 										<div class="send">
-											<input type="button" class="submitbtn" name="submit" value="Registrati" onClick="register();">
+											<input type="button" class="submitbtn" name="submit" value="Aggiungi" onClick="register();">
 										</div>
 						     </form>
-                             <br><a href="#" class="applink"><p align="center">Sei già registrato? <br>Effettua il Login</p></a>
-					</div>
+                             
+
 			</div>
        </div> <!--fine jquery page -->  
    
-<script>
-$('.applink').click(function () {
-$("#register").fadeOut(500,function(){
-     $('body').load('login.html', function () {
-    $("#login").slideDown(1000);
-})
-});
-
-return false;});
-</script>             
+            
 </body>
 </html>
