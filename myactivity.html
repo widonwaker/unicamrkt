@@ -51,14 +51,14 @@ var usermail = window.localStorage.getItem("email");
 $.post("http://myappmarketing.it/amministra/production/regactivity.php", {nome:$("#nome").val(), email: usermail, desc:$("#desc").val(), file:$("#file").val()}).done(function(data){
 if(!data){
 navigator.notification.alert(
-    'Registrazione effettuata',  // message
+    'La tua attività è stata aggiunta con successo.',  // message
     SuccessDismiss,         // callback
     'Congratulazioni!',            // title
     'Ok'                  // buttonName
 );
 }else{
 navigator.notification.alert(
-    'Probabilmente l\'email che hai inserito è già presente nel nostro archivio. Inoltre, assicurati di inserire nome e cognome.',  // message
+    'Assicurati di inserire nome e descrizione.',  // message
     FailedDismiss,         // callback
     'Errore!',            // title
     'Riprova'                  // buttonName
