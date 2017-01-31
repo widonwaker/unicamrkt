@@ -59,7 +59,7 @@
     </script>        
     </head>
 <body>
-<div data-role="page" id="indexhome">
+<div data-role="page" id="indexhome" class="sfondo">
 <div class="body-back">
 	<div class="masthead pdng-stn1">
 		<div id="menu" class="panel" role="navigation">
@@ -102,7 +102,7 @@
 						<div class="col-sm-6 goal-icons">
 							<div class="goal">
 								<div class=" hi-icon-effect-6">
-										<a href="#" onClick="location.href='myactivity.html'"  class="hi-icon glyphicon glyphicon-briefcase"></a>
+										<a href="#" id="to_activity" class="hi-icon glyphicon glyphicon-briefcase"></a>
 										 <h4>La Mia Attività</h4>
 								</div>
 							</div>
@@ -126,7 +126,7 @@
 						<div class="col-sm-6 goal-icons">
 							<div class="goal">
 								<div class=" hi-icon-effect-6">
-										<a href="#" onClick="location.href='news.html'" class="hi-icon glyphicon glyphicon-comment"></a>
+										<a href="#" id="to_news" class="hi-icon glyphicon glyphicon-comment"></a>
 										 <h4>News</h4>
 								</div>
 							</div>
@@ -155,5 +155,25 @@ $(document).ready(function() {
 		}
 });  
 </script>  
+
+<script>
+$('#to_activity').click(function () {
+$("#indexhome").fadeOut(500,function(){
+     $('body').load('myactivity.html', function () {
+    $("#contact").slideDown(1000);
+})
+});
+
+return false;});
+
+$('#to_news').click(function () {
+$("#indexhome").fadeOut(500,function(){
+     $('body').load('news.html', function () {
+    $("#news").slideDown(1000);
+})
+});
+
+return false;});
+</script>   
 </body>
 </html>

@@ -42,7 +42,7 @@
     </head>
 
 <body>
-<div data-role="page" id="register">
+<div data-role="page" id="register" class="sfondo">
 			<div class="contact" id="contact" >
 
 							<div class="menu-notify">
@@ -53,14 +53,14 @@
 									<h5 class="pro-link">Attività</h5>
 								</div>
 								<div class="Profile-right">
-									<a href="#" data-rel="back"><i class="fa fa-mail-reply"></i></a>
+									<a href="#" onClick="location.href='dashboard.html'"><i class="fa fa-mail-reply"></i></a>
 								</div>
 								<div class="clearfix"></div>
 							</div>
 							<h3><!--Nuovo Utente--></h3>
 
 						<div class="sing-up-icon text-center" ></div>
-					<form enctype="multipart/form-data" id="formadd">
+					<form enctype="multipart/form-data" id="formadd" style="display:none">
 									<div class="styled-input">
 									  <input type="text" name="nome" id="nome" required />
 									  <label>Nome*</label>
@@ -82,7 +82,7 @@
 										</div>
 						     </form>
                              
-                             <div id="test" style="display:none;">
+                             <div id="riepilogo" style="display:none;">
                              Test
                              </div>
                              
@@ -106,10 +106,10 @@ var usermail = window.localStorage.getItem("email");
                         $.each(response, function (i, item) {
 						   if (item.conto != 1) {
 							   $("#formadd").show();
-							   $("#test").hide();
+							   $("#riepilogo").hide();
 						   } else {
 							   $("#formadd").hide();
-							   $("#test").show();
+							   $("#riepilogo").show();
 						   }
                         });
 
@@ -183,6 +183,8 @@ formData.append('file', $('input[type=file]')[0].files[0]);
   }
 }
 
-</script>              
+</script>       
+
+        
 </body>
 </html>
