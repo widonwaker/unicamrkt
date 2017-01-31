@@ -48,23 +48,33 @@ function FailedDismiss() {
 
 function register(){
 var usermail = window.localStorage.getItem("email");
-$.post("http://myappmarketing.it/amministra/production/regactivity.php", {nome:$("#nome").val(), email: usermail, desc:$("#desc").val(), tel:$("#tel").val()}).done(function(data){
-if(!data){
-navigator.notification.alert(
-    'La tua attività è stata aggiunta con successo.',  // message
-    SuccessDismiss,         // callback
-    'Congratulazioni!',            // title
-    'Ok'                  // buttonName
-);
-}else{
-navigator.notification.alert(
-    'Assicurati di inserire nome e descrizione.',  // message
-    FailedDismiss,         // callback
-    'Errore!',            // title
-    'Riprova'                  // buttonName
-);
-}
-});
+    var formData = new FormData();
+formData.append('nome', $("#nome").val());
+formData.append('email', usermail);
+formData.append('desc', desc:$("#desc").val());
+// Main magic with files here
+formData.append('logo', $('input[type=file]')[0].files[0]); 
+    $.ajax({
+        url: 'http://myappmarketing.it/amministra/production/regactivity.php',  //Server script to process data
+        type: 'POST',
+        xhr: function() {  // Custom XMLHttpRequest
+            var myXhr = $.ajaxSettings.xhr();
+            if(myXhr.upload){ // Check if upload property exists
+                myXhr.upload.addEventListener('progress',progressHandlingFunction, false); // For handling the progress of the upload
+            }
+            return myXhr;
+        },
+        //Ajax events
+        beforeSend: beforeSendHandler,
+        success: completeHandler,
+        error: errorHandler,
+        // Form data
+        data: formData,
+        //Options to tell jQuery not to process data or worry about content-type.
+        cache: false,
+        contentType: false,
+        processData: false
+    });
 }
 
 </script>    
@@ -103,7 +113,7 @@ navigator.notification.alert(
 									  <label>Telefono</label>
 									  <span></span> </div>  
                                     <div class="styled-input">
-									  <input type="file" name="file" id="file" required />
+									  <input type="file" name="file" id="file"  />
 									  <label>Logo:</label>
 									  <span></span> </div>    
 										<div class="send">
