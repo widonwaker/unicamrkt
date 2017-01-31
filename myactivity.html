@@ -82,14 +82,14 @@
 										</div>
 						     </form>
                              
-
+            <div class="loader">
+              <center>
+                 <img class="ajax-loader" src="images/loader.gif" alt="loading..">
+              </center>
+             </div>
+             
 			</div>
             
-            <div class="loader">
-   <center>
-       <img class="loading-image" src="images/loader.gif" alt="loading..">
-   </center>
-</div>
        </div> <!--fine jquery page -->  
    
   <script>
@@ -130,10 +130,10 @@ formData.append('file', $('input[type=file]')[0].files[0]);
         success: completeHandler,
         error: errorHandler,
         beforeSend: function(){
-        // Code to display spinner
+           $('.loader').show();
         },
         complete: function(){
-        // Code to hide spinner.
+           $('.loader').hide();
         },
         cache: false,
         contentType: false,
