@@ -84,6 +84,12 @@
                              
 
 			</div>
+            
+            <div class="loader">
+   <center>
+       <img class="loading-image" src="images/loader.gif" alt="loading..">
+   </center>
+</div>
        </div> <!--fine jquery page -->  
    
   <script>
@@ -123,7 +129,12 @@ formData.append('file', $('input[type=file]')[0].files[0]);
         data: formData,
         success: completeHandler,
         error: errorHandler,
-        //Options to tell jQuery not to process data or worry about content-type.
+        beforeSend: function(){
+        // Code to display spinner
+        },
+        complete: function(){
+        // Code to hide spinner.
+        },
         cache: false,
         contentType: false,
         processData: false
