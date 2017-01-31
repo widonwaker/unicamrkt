@@ -96,6 +96,7 @@
 
 
 function completeHandler () {
+	$('.loader').hide();
 	navigator.notification.alert(
     'La tua attività è stata aggiunta con successo.',  // message
     SuccessDismiss,         // callback
@@ -105,6 +106,7 @@ function completeHandler () {
 }
 
 function errorHandler() {
+	$('.loader').hide();
 	navigator.notification.alert(
     'Qualcosa è andato storto. Assicurati di compilare i campi richiesti.',  // message
     SuccessDismiss,         // callback
