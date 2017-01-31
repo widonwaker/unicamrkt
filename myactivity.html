@@ -63,11 +63,11 @@
 					<form enctype="multipart/form-data">
 									<div class="styled-input">
 									  <input type="text" name="nome" id="nome" required />
-									  <label>Nome</label>
+									  <label>Nome*</label>
 									  <span></span> </div>
 									<div class="styled-input">
 									  <textarea name="desc" id="desc" required ></textarea>
-									  <label>Descrizione</label>
+									  <label>Descrizione*</label>
 									  <span></span> </div>
                                     <div class="styled-input">
 									  <input type="text" name="tel" id="tel" required />
@@ -99,6 +99,7 @@ function SuccessDismiss() {
 function FailedDismiss() {
     //location.href='register.html';
 }	
+
 
 function completeHandler () {
 	$('.loader').hide();
@@ -146,6 +147,13 @@ formData.append('file', $('input[type=file]')[0].files[0]);
         contentType: false,
         processData: false
     });
+  } else {
+	 navigator.notification.alert(
+    'Compilare i campi obbligatori (*)',  // message
+    SuccessDismiss,         // callback
+    'Attenzione!',            // title
+    'Ok'                  // buttonName
+    );
   }
 }
 
