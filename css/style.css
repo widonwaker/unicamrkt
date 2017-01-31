@@ -2223,4 +2223,18 @@ input[type="file"] {
 	color: #EA6153;
 	font-size: x-small;
 }
-
+.ajax-loader {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: 10;
+}
+.loader {
+    background-color: black; opacity: 0.5;
+    z-index: 5;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+}​
