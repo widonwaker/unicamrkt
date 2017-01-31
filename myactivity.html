@@ -51,7 +51,7 @@ var usermail = window.localStorage.getItem("email");
     var formData = new FormData();
 formData.append('nome', $("#nome").val());
 formData.append('email', usermail);
-formData.append('desc', desc:$("#desc").val());
+formData.append('desc', $("#desc").val());
 // Main magic with files here
 formData.append('logo', $('input[type=file]')[0].files[0]); 
     $.ajax({
