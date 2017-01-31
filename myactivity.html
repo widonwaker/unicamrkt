@@ -38,41 +38,7 @@
 		<!--script-->
 		<link href='//fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
 		<link href='//fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic' rel='stylesheet' type='text/css'>
-<script>
-function SuccessDismiss() {
-   //location.href='login.html';
-}	
-function FailedDismiss() {
-    //location.href='register.html';
-}	
 
-
-function completeHandler () {
-	alert(success);
-}
-
-function errorHandler() {
-	alert(error);
-	alert(data);
-}
-
-function register(){
-var usermail = window.localStorage.getItem("email");
-var formData = new FormData($('form')[0]);
-    $.ajax({
-        url: 'http://myappmarketing.it/amministra/production/regactivity.php',  //Server script to process data
-        type: 'POST',
-        data: formData,
-        success: completeHandler,
-        error: errorHandler,
-        //Options to tell jQuery not to process data or worry about content-type.
-        cache: false,
-        contentType: false,
-        processData: false
-    });
-}
-
-</script>    
     </head>
 
 <body>
@@ -120,6 +86,43 @@ var formData = new FormData($('form')[0]);
 			</div>
        </div> <!--fine jquery page -->  
    
-            
+  <script>
+function SuccessDismiss() {
+   //location.href='login.html';
+}	
+function FailedDismiss() {
+    //location.href='register.html';
+}	
+
+
+function completeHandler () {
+	alert("ok");
+}
+
+function errorHandler() {
+	alert("errore");
+}
+
+function register(){
+var usermail = window.localStorage.getItem("email");
+var formData = new FormData();
+formData.append('nome', $("#nome").val());
+formData.append('desc', $("#desc").val());
+formData.append('email', usermail);
+formData.append('file', $('input[type=file]')[0].files[0]);
+    $.ajax({
+        url: 'http://myappmarketing.it/amministra/production/regactivity.php',  //Server script to process data
+        type: 'POST',
+        data: formData,
+        success: completeHandler,
+        error: errorHandler,
+        //Options to tell jQuery not to process data or worry about content-type.
+        cache: false,
+        contentType: false,
+        processData: false
+    });
+}
+
+</script>              
 </body>
 </html>
