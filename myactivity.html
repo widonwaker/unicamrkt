@@ -87,20 +87,24 @@
        </div> <!--fine jquery page -->  
    
   <script>
-function SuccessDismiss() {
-   //location.href='login.html';
-}	
-function FailedDismiss() {
-    //location.href='register.html';
-}	
 
 
 function completeHandler () {
-	alert("ok");
+	navigator.notification.alert(
+    'La tua attività è stata aggiunta con successo.',  // message
+    SuccessDismiss,         // callback
+    'Congratulazioni!',            // title
+    'Ok'                  // buttonName
+    );
 }
 
 function errorHandler() {
-	alert("errore");
+	navigator.notification.alert(
+    'Qualcosa è andato storto. Assicurati di compilare i campi richiesti.',  // message
+    SuccessDismiss,         // callback
+    'Errore!',            // title
+    'Ok'                  // buttonName
+     );
 }
 
 function register(){
@@ -110,6 +114,9 @@ formData.append('nome', $("#nome").val());
 formData.append('desc', $("#desc").val());
 formData.append('email', usermail);
 formData.append('file', $('input[type=file]')[0].files[0]);
+
+  if ($("#nome").val(), $("#desc").val() ) {
+
     $.ajax({
         url: 'http://myappmarketing.it/amministra/production/regactivity.php',  //Server script to process data
         type: 'POST',
@@ -121,6 +128,7 @@ formData.append('file', $('input[type=file]')[0].files[0]);
         contentType: false,
         processData: false
     });
+  }
 }
 
 </script>              
