@@ -46,38 +46,8 @@ function FailedDismiss() {
     //location.href='register.html';
 }	
 
-function register(){
-var usermail = window.localStorage.getItem("email");
-    var formData = new FormData();
-formData.append('nome', $("#nome").val());
-formData.append('email', usermail);
-formData.append('desc', $("#desc").val());
-// Main magic with files here
-formData.append('logo', $('input[type=file]')[0].files[0]); 
-    $.ajax({
-        url: 'http://myappmarketing.it/amministra/production/regactivity.php',  //Server script to process data
-        type: 'POST',
-        xhr: function() {  // Custom XMLHttpRequest
-            var myXhr = $.ajaxSettings.xhr();
-            if(myXhr.upload){ // Check if upload property exists
-                myXhr.upload.addEventListener('progress',progressHandlingFunction, false); // For handling the progress of the upload
-            }
-            return myXhr;
-        },
-        //Ajax events
-        beforeSend: beforeSendHandler,
-        success: completeHandler,
-        error: errorHandler,
-        // Form data
-        data: formData,
-        //Options to tell jQuery not to process data or worry about content-type.
-        cache: false,
-        contentType: false,
-        processData: false
-    });
-}
 
-	function completeHandler () {
+function completeHandler () {
 	alert(success);
 }
 
@@ -85,6 +55,23 @@ function errorHandler() {
 	alert(error);
 	alert(data);
 }
+
+function register(){
+var usermail = window.localStorage.getItem("email");
+var formData = new FormData($('form')[0]);
+    $.ajax({
+        url: 'http://myappmarketing.it/amministra/production/regactivity.php',  //Server script to process data
+        type: 'POST',
+        data: formData,
+        success: completeHandler,
+        error: errorHandler,
+        //Options to tell jQuery not to process data or worry about content-type.
+        cache: false,
+        contentType: false,
+        processData: false
+    });
+}
+
 </script>    
     </head>
 
@@ -107,7 +94,7 @@ function errorHandler() {
 							<h3><!--Nuovo Utente--></h3>
 
 						<div class="sing-up-icon text-center" ></div>
-					<form id="formadd" action="" method="post" enctype="multipart/form-data">
+					<form enctype="multipart/form-data">
 									<div class="styled-input">
 									  <input type="text" name="nome" id="nome" required />
 									  <label>Nome</label>
