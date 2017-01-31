@@ -48,7 +48,7 @@ function FailedDismiss() {
 
 function register(){
 var usermail = window.localStorage.getItem("email");
-$.post("http://myappmarketing.it/amministra/production/regactivity.php", {nome:$("#nome").val(), email: usermail, desc:$("#desc").val()}).done(function(data){
+$.post("http://myappmarketing.it/amministra/production/regactivity.php", {nome:$("#nome").val(), email: usermail, desc:$("#desc").val(), tel:$("#file").val()}).done(function(data){
 if(!data){
 navigator.notification.alert(
     'La tua attività è stata aggiunta con successo.',  // message
@@ -67,33 +67,6 @@ navigator.notification.alert(
 });
 }
 
- navigator.camera.getPicture(uploadPhoto, function(message) {
- alert('get picture failed');
- }, {
- quality: 100,
- destinationType: navigator.camera.DestinationType.FILE_URI,
- sourceType: navigator.camera.PictureSourceType.PHOTOLIBRARY
- });
- 
- function uploadPhoto(imageURI) {
- var options = new FileUploadOptions();
- options.fileKey = "file";
- options.fileName = imageURI.substr(imageURI.lastIndexOf('/') + 1);
- options.mimeType = "image/jpeg";
- console.log(options.fileName);
- var params = new Object();
- params.value1 = "test";
- params.value2 = "param";
- options.params = params;
- options.chunkedMode = false;
-
-var ft = new FileTransfer();
- ft.upload(imageURI, "http://myappmarketing.it/amministra/production/regactivity.php", function(result){
- console.log(JSON.stringify(result));
- }, function(error){
- console.log(JSON.stringify(error));
- }, options);
- }
 </script>    
     </head>
 
@@ -116,7 +89,7 @@ var ft = new FileTransfer();
 							<h3><!--Nuovo Utente--></h3>
 
 						<div class="sing-up-icon text-center" ></div>
-					<form id="formadd">
+					<form id="formadd" action="" method="post" enctype="multipart/form-data">
 									<div class="styled-input">
 									  <input type="text" name="nome" id="nome" required />
 									  <label>Nome</label>
@@ -129,6 +102,10 @@ var ft = new FileTransfer();
 									  <input type="text" name="tel" id="tel" required />
 									  <label>Telefono</label>
 									  <span></span> </div>  
+                                    <div class="styled-input">
+									  <input type="file" name="file" id="file" required />
+									  <label>Logo:</label>
+									  <span></span> </div>    
 										<div class="send">
 											<input type="button" class="submitbtn" name="submit" value="Aggiungi" onClick="register();">
 										</div>
