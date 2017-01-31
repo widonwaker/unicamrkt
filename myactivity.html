@@ -49,7 +49,8 @@ function FailedDismiss() {
 function register(){
 var usermail = window.localStorage.getItem("email");
 $.post("http://myappmarketing.it/amministra/production/regactivity.php", {nome:$("#nome").val(), email: usermail, desc:$("#desc").val(), file:$("#file").val()}).done(function(data){
-if(!data){
+alert(data);
+	if(!data){
 navigator.notification.alert(
     'La tua attività è stata aggiunta con successo.',  // message
     SuccessDismiss,         // callback
