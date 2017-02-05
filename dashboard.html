@@ -126,7 +126,7 @@
 						<div class="col-sm-6 goal-icons">
 							<div class="goal">
 								<div class=" hi-icon-effect-6">
-										<a href="#" id="to_news" onClick="location.href='news.html'" class="hi-icon glyphicon glyphicon-comment"></a>
+										<a href="news.html" id="to_news" rel="external" class="hi-icon glyphicon glyphicon-comment"></a>
 										 <h4>News</h4>
 								</div>
 							</div>
@@ -154,18 +154,11 @@ $(document).ready(function() {
 			document.getElementById('altro_menu').style.display = "none";
 		}
 });  
+
+function toNews () {
+	$(":mobile-pagecontainer").pagecontainer("change", "news.html", { reload: true} );
+}
 </script>  
 
-<!--<script>
-$(document).on('pagecreate', function() {
-	$('#to_news').bind('click', function() {
-		toNews()
-	});
-});
-
-function toNews() {
-	$.mobile.changePage("news.html").selectmenu( "refresh", true );
-}
-</script>-->
 </body>
 </html>
