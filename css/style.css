@@ -2216,7 +2216,7 @@ input[type="file"] {
 .ui-link {
 	text-decoration: none;
 }
-#indexhome, #register, #login {
+.sfondo {
 	background-color: #F7F7F7;
 }
 .applink {
@@ -2238,3 +2238,6 @@ input[type="file"] {
     width: 100%;
     height: 100%;
 }​
+.ui-page {
+    -webkit-backface-visibility: hidden;
+}
