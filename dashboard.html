@@ -27,7 +27,21 @@
 				$('.menu-link').bigSlide();
 				});
             </script>
-            
+
+<script>
+document.addEventListener("offline", onOffline, false);
+function offlineAppreso() {
+   //
+}	
+function onOffline() {
+navigator.notification.alert(
+    'E\' richiesta una connessione ad internet per poter utilizzare questa applicazione. Assicurati di essere connesso ad una rete wifi o abilita i dati cellulare.',  // message
+    offlineAppreso,         // callback
+    'Attenzione!',            // title
+    'Ok'                  // buttonName
+);
+}
+</script>            
 
 
             <!--script-->
