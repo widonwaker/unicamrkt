@@ -4,11 +4,6 @@
         <title>Marketing UNICA</title>
 		<meta name="viewport" content="width=device-width; user-scalable=no" >
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-        <script>
-        if(window.localStorage.getItem("loggedIn") == 1) {
-        location.href='dashboard.html';
-        }
-        </script>
         <!--font-awsome-css-->
            <link rel="stylesheet" href="css/font-awesome.min.css"> 
 		<!--bootstrap-->
@@ -59,7 +54,7 @@
 									<h5 class="pro-link">Benvenuto</h5>
 								</div>
 								<div class="Profile-right">
-									<a href="#" onClick="location.href='index.html'"><i class="fa fa-mail-reply"></i></a>
+									<a href="#" onClick="BackToDash()"><i class="fa fa-mail-reply"></i></a>
 								</div>
 								<div class="clearfix"></div>
 							</div>
@@ -79,23 +74,15 @@
 											<input type="submit" value="Entra" />
 										</div>
 						     </form>
-                            <br><a href="#" class="applink"><p align="center">Non hai un account? <br>Registrati ora</p></a>
+                            <br><a href="#" class="applink" onclick="toReg()"><p align="center">Non hai un account? <br>Registrati ora</p></a>
 					</div>
 			</div>
-       </div> <!--fine jquery page -->   
- 
-<script>
-$('.applink').click(function () {
-$("#login").fadeOut(500,function(){
-     $('body').load('register.html', function () {
-    $("#register").slideDown(1000);
-})
-});
-
-return false;});
-</script>       
-
- <script>
+                    <script>
+        if(window.localStorage.getItem("loggedIn") == 1) {
+        location.href='dashboard.html';
+        }
+        </script>
+        <script>
  function FailedDismiss() {
    location.href='index.html';
 }
@@ -145,5 +132,9 @@ return false;});
         xhr.send(data); 
     });
 </script>  
+       </div> <!--fine jquery page -->   
+    
+
+ 
 </body>
 </html>

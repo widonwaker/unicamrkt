@@ -53,7 +53,7 @@
 									<h5 class="pro-link">Attività</h5>
 								</div>
 								<div class="Profile-right">
-									<a href="#" onClick="location.href='dashboard.html'"><i class="fa fa-mail-reply"></i></a>
+									<a href="#" onClick="BackToDash()"><i class="fa fa-mail-reply"></i></a>
 								</div>
 								<div class="clearfix"></div>
 							</div>
@@ -94,9 +94,7 @@
              
 			</div>
             
-       </div> <!--fine jquery page -->  
-
-<script>
+            <script>
 var usermail = window.localStorage.getItem("email");
    $.ajax({
         url: 'http://myappmarketing.it/amministra/production/app_activity.php',  //Server script to process data
@@ -183,7 +181,8 @@ formData.append('file', $('input[type=file]')[0].files[0]);
   }
 }
 
-</script>       
+</script>    
+       </div> <!--fine jquery page -->     
 
         
 </body>

@@ -38,34 +38,7 @@
 		<!--script-->
 		<link href='//fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
 		<link href='//fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic' rel='stylesheet' type='text/css'>
-<script>
-function SuccessDismiss() {
-   location.href='login.html';
-}	
-function FailedDismiss() {
-    location.href='register.html';
-}	
-
-function register(){
-$.post("http://myappmarketing.it/amministra/production/regapp.php", {nome:$("#nome").val(), email:$("#email").val(), pass:$("#pass").val()}).done(function(data){
-if(!data){
-navigator.notification.alert(
-    'Registrazione effettuata',  // message
-    SuccessDismiss,         // callback
-    'Congratulazioni!',            // title
-    'Ok'                  // buttonName
-);
-}else{
-navigator.notification.alert(
-    'Probabilmente l\'email che hai inserito è già presente nel nostro archivio. Inoltre, assicurati di inserire nome e cognome.',  // message
-    FailedDismiss,         // callback
-    'Errore!',            // title
-    'Riprova'                  // buttonName
-);
-}
-});
-}
-</script>    
+  
     </head>
 
 <body>
@@ -106,20 +79,38 @@ navigator.notification.alert(
 											<input type="button" class="submitbtn" name="submit" value="Registrati" onClick="register();">
 										</div>
 						     </form>
-                             <br><a href="#" class="applink"><p align="center">Sei già registrato? <br>Effettua il Login</p></a>
+                             <br><a href="#" class="applink" onclick="toLogin()"><p align="center">Sei già registrato? <br>Effettua il Login</p></a>
 					</div>
 			</div>
-       </div> <!--fine jquery page -->  
-   
-<script>
-$('.applink').click(function () {
-$("#register").fadeOut(500,function(){
-     $('body').load('login.html', function () {
-    $("#login").slideDown(1000);
-})
-});
+            <script>
+function SuccessDismiss() {
+   location.href='login.html';
+}	
+function FailedDismiss() {
+    location.href='register.html';
+}	
 
-return false;});
-</script>             
+function register(){
+$.post("http://myappmarketing.it/amministra/production/regapp.php", {nome:$("#nome").val(), email:$("#email").val(), pass:$("#pass").val()}).done(function(data){
+if(!data){
+navigator.notification.alert(
+    'Registrazione effettuata',  // message
+    SuccessDismiss,         // callback
+    'Congratulazioni!',            // title
+    'Ok'                  // buttonName
+);
+}else{
+navigator.notification.alert(
+    'Probabilmente l\'email che hai inserito è già presente nel nostro archivio. Inoltre, assicurati di inserire nome e cognome.',  // message
+    FailedDismiss,         // callback
+    'Errore!',            // title
+    'Riprova'                  // buttonName
+);
+}
+});
+}
+</script>  
+       </div> <!--fine jquery page -->  
+              
 </body>
 </html>

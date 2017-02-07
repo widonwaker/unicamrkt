@@ -22,11 +22,8 @@
 			 <!--script-->
 			 
             <script src="js/bigSlide.js"></script>
-            <script>
-				$(document).ready(function() {
-				$('.menu-link').bigSlide();
-				});
-            </script>
+
+            
 
 
             <!--script-->
@@ -38,7 +35,10 @@
 		<!--script-->
 		<link href='//fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
 		<link href='//fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic' rel='stylesheet' type='text/css'>
-        
+    </head>
+<body>
+<div data-role="page" id="news" class="sfondo">
+
 <script type="text/javascript">    
 		    var usermail = window.localStorage.getItem("email");
             $.ajax('http://myappmarketing.it/amministra/production/app_profile.php', 
@@ -94,44 +94,23 @@ function loading(showOrHide) {
                     }
                 });
        
-    </script>     
-    </head>
-<body>
-<div data-role="page" id="news" class="sfondo">
+    </script>  
+
+            
+
 <div class="body-back">
 	<div class="masthead pdng-stn1">
-		<div id="menu" class="panel" role="navigation">
-			<div class="wrap-content">
-				<div class="profile-menu text-center">
-					<img class="img-circle border-effect" src="images/logo.png" alt=" ">
-						<h3 id="usertitle"></h3>
-						<p><!--Utente--></p>
-						<div class="pro-menu">
-                        <div class="logo" id="menu_princ">
-								<li><a class=" link link--yaku scroll active" href="#" onClick="location.href='dashboard.html'" id="homeurl"><span>D</span><span>a</span><span>s</span><span>h</span><span>b</span><span>o</span><span>a</span><span>r</span><span>d</span></a></li>
-                                <li><a class=" link link--yaku scroll" href="#" onClick="location.href='index.html'"><span>B</span><span>a</span><span>c</span><span>h</span><span>e</span><span>c</span><span>a</span></a></li>
-								<li><a class=" link link--yaku scroll" href="#" onClick="location.href='logout.html'"><span>E</span><span>s</span><span>c</span><span>i</span></a></li>
-							</div>
-                            
-                            <div class="logo" id="altro_menu">
-                            <li><a class=" link link--yaku scroll" href="#" onClick="location.href='login.html'">Area commercianti</a></li>
-                            </div>
-
-						</div>
-				</div>
-			</div>
-		</div>
 		<div class="phone-box wrap push" id="home">
         <div class="parker" id="service">
-			<div class="menu-notify" data-role="header">
+			<div class="menu-notify" data-role="header" data-position="fixed">
 				<div class="profile-left">
-					<a href="#menu" class="menu-link"><i class="fa fa-user"></i></a>
+					<p style="visibility: hidden;">-</p>
 				</div>
 				<div class="Profile-mid">
 					<h5 class="pro-link">News</h5>
 				</div>
 				<div class="Profile-right">
-                   <a href="#"  onClick="location.href='dashboard.html'"><i class="fa fa-mail-reply"></i></a>
+                   <a href="#" onClick="BackToDash()"><i class="fa fa-mail-reply"></i></a>
 				</div>
 				<div class="clearfix"></div>
 			</div> 
@@ -155,8 +134,6 @@ function loading(showOrHide) {
   </div>
 </div>
 </div>
-</div> <!-- end homepage -->
-
   <script>
 $(document).ready(function() {
 
@@ -167,5 +144,14 @@ $(document).ready(function() {
 		}
 });  
 </script>
+
+            <script>
+				$(document).on('pageshow', function(){
+				$('.menu-link').bigSlide();
+				});
+            </script>
+</div> <!-- end homepage -->
+
+
 </body>
 </html>

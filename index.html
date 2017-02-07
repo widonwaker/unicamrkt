@@ -72,13 +72,13 @@
 						<p><!--Utente--></p>
 						<div class="pro-menu">
                         <div class="logo" id="menu_princ">
-								<li><a class=" link link--yaku scroll" href="#" onClick="location.href='dashboard.html'" id="homeurl"><span>D</span><span>a</span><span>s</span><span>h</span><span>b</span><span>o</span><span>a</span><span>r</span><span>d</span></a></li>
+								<li><a class=" link link--yaku scroll" href="#" onClick="BackToDash()" id="homeurl"><span>D</span><span>a</span><span>s</span><span>h</span><span>b</span><span>o</span><span>a</span><span>r</span><span>d</span></a></li>
                                 <li><a class=" link link--yaku scroll active" href="#" onClick="location.href='index.html'"><span>B</span><span>a</span><span>c</span><span>h</span><span>e</span><span>c</span><span>a</span></a></li>
 								<li><a class=" link link--yaku scroll" href="#" onClick="location.href='logout.html'"><span>E</span><span>s</span><span>c</span><span>i</span></a></li>
 							</div>
                             
                             <div class="logo" id="altro_menu">
-                            <li><a class=" link link--yaku scroll" href="#" onClick="location.href='login.html'">Area commercianti</a></li>
+                            <li><a class=" link link--yaku scroll" href="#" onClick="toLogin()">Area commercianti</a></li>
                             </div>
 
 						</div>
@@ -113,7 +113,7 @@
 </div> <!-- end homepage -->
 
 <script>
-$(document).ready(function() {
+$(document).on('pageinit', function(){
 
 	    if(window.localStorage.getItem("loggedIn") != 1) {
             document.getElementById('menu_princ').style.display = "none";
@@ -121,6 +121,19 @@ $(document).ready(function() {
 			document.getElementById('altro_menu').style.display = "none";
 		}
 });  
+
+function toLogin() {
+	$(":mobile-pagecontainer").pagecontainer("change", "login.html", {transition: "fade"} );
+}
+
+function toReg() {
+	$(":mobile-pagecontainer").pagecontainer("change", "register.html", {transition: "fade"} );
+}
+
+function BackToDash() {
+	$(":mobile-pagecontainer").pagecontainer("change", "dashboard.html", {transition: "fade"} );
+}
+
 </script>
 </body>
 </html>

@@ -23,10 +23,11 @@
 			 
             <script src="js/bigSlide.js"></script>
             <script>
-				$(document).ready(function() {
+				$(document).on('pageinit', function(){
 				$('.menu-link').bigSlide();
 				});
             </script>
+            
 
 
             <!--script-->
@@ -102,7 +103,7 @@
 						<div class="col-sm-6 goal-icons">
 							<div class="goal">
 								<div class=" hi-icon-effect-6">
-										<a href="#" onClick="location.href='myactivity.html'" class="hi-icon glyphicon glyphicon-briefcase"></a>
+										<a href="#" onclick="toMyactivity()" class="hi-icon glyphicon glyphicon-briefcase"></a>
 										 <h4>La Mia Attività</h4>
 								</div>
 							</div>
@@ -126,7 +127,7 @@
 						<div class="col-sm-6 goal-icons">
 							<div class="goal">
 								<div class=" hi-icon-effect-6">
-										<a href="news.html" id="to_news" rel="external" class="hi-icon glyphicon glyphicon-comment"></a>
+										<a href="#" id="to_news" onclick="toNews()" class="hi-icon glyphicon glyphicon-comment"></a>
 										 <h4>News</h4>
 								</div>
 							</div>
@@ -155,9 +156,18 @@ $(document).ready(function() {
 		}
 });  
 
-function toNews () {
-	$(":mobile-pagecontainer").pagecontainer("change", "news.html", { reload: true} );
+function toNews() {
+    $(":mobile-pagecontainer").pagecontainer("change", "news.html", {transition: "fade"} );
 }
+
+function toMyactivity() {
+	$(":mobile-pagecontainer").pagecontainer("change", "myactivity.html", {transition: "fade"} );
+}
+
+function BackToDash() {
+	$(":mobile-pagecontainer").pagecontainer("change", "dashboard.html", {transition: "fade"} );
+}
+
 </script>  
 
 </body>
