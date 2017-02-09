@@ -83,7 +83,7 @@
 						     </form>
                              
                              <div id="riepilogo" style="display:none;">
-                             Test
+                             <!-- ajax -->
                              </div>
                              
             <div class="loader" style="display:none;">
@@ -108,7 +108,14 @@ var usermail = window.localStorage.getItem("email");
 						   } else {
 							   $("#formadd").hide();
 							   $("#riepilogo").show();
-							   alert(item.descrizione);
+							   $('#riepilogo')
+							     .append('<div class="profile-menu text-center">')
+							     .append('<img class="img-circle border-effect" src="http://myappmarketing.it/amministra/userlogos/' + item.logo + '" alt=" "></div>')
+								 .append('<div class="about-gd-right"><p>' + item.nome + '</p></div>')
+                                 .append('<div class="about-gd-right"><p>' + item.descrizione + '</p></div>')
+								 .append('<div class="about-gd-right"><p>' + item.tel + '</p></div>')
+                                 .append('<div class="clearfix"> </div>');
+                            //.appendTo('.month-graph');
 						   }
                         });
 
