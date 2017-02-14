@@ -114,8 +114,8 @@ var usermail = window.localStorage.getItem("email");
 								 .append('<div class="about-gd-right"><h3 align="center">' + item.nome + '</h3></div>')
                                  .append('<div class="about-gd-right"><p>' + item.descrizione + '</p></div>')
 								 .append('<div class="about-gd-right"><p><a class="hi-icon glyphicon glyphicon-earphone" style="background: #07A7CA"></a> <a href="tel:+39' + item.tel + '">' + item.tel + '</a></p></div>')
-								 .append('<div class="send"><input type="button" class="submitbtn" name="submit" value="Cancella" onClick="cancella();"></div>');
-                                 .append('<div class="clearfix"> </div>');
+                                 .append('<div class="clearfix"> </div>')
+								 .append('<div class="send"><input type="button" class="submitbtn" name="submit" value="Cancella" onClick="cancella();"></div>');;
                             //.appendTo('.month-graph');
 						   }
                         });
