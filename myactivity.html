@@ -128,7 +128,7 @@ function SuccessDismiss() {
    location.href='myactivity.html';
 }	
 function FailedDismiss() {
-    //location.href='register.html';
+    //
 }	
 
 
@@ -138,6 +138,16 @@ function completeHandler () {
     'La tua attività è stata aggiunta con successo.',  // message
     SuccessDismiss,         // callback
     'Congratulazioni!',            // title
+    'Ok'                  // buttonName
+    );
+}
+
+function deleteHandler () {
+	$('.loader').hide();
+	navigator.notification.alert(
+    'La tua attività è stata cancellata con successo.',  // message
+    SuccessDismiss,         // callback
+    'Completato!',            // title
     'Ok'                  // buttonName
     );
 }
@@ -189,6 +199,36 @@ formData.append('file', $('input[type=file]')[0].files[0]);
   }
 }
 
+function cancella() {
+	var usermail = window.localStorage.getItem("email");
+    var formData = new FormData();
+    formData.append('canc', 'cancella');
+    formData.append('email', usermail);
+	 $.ajax({
+        url: 'http://myappmarketing.it/amministra/production/editactivity.php',  //Server script to process data
+        type: 'POST',
+        data: formData,
+        success: completeHandler,
+        error: errorHandler,
+        beforeSend: function(){
+           $('.loader').show();
+        },
+        complete: function(){
+           $('.loader').hide();
+        },
+        cache: false,
+        contentType: false,
+        processData: false
+    });
+  } else {
+	 navigator.notification.alert(
+    'Qualcosa è andato storto. Riprova.',  // message
+    FailedDismiss,         // callback
+    'Attenzione!',            // title
+    'Ok'                  // buttonName
+    );
+	
+}
 </script>    
        </div> <!--fine jquery page -->     
 
