@@ -81,7 +81,6 @@
 											<input type="button" class="submitbtn" name="submit" value="Aggiungi" onClick="register();">
 										</div>
 						     </form>
-                             
                              <div id="riepilogo" style="display:none;">
                              <!-- ajax -->
                              </div>
@@ -108,9 +107,9 @@ var usermail = window.localStorage.getItem("email");
 						   } else {
 							   $("#formadd").hide();
 							   $("#riepilogo").show();
-							   $('#riepilogo')
+							   $('#riepilogo') 
 							     .append('<div class="profile-menu text-center">')
-							     .append('<img class="img-circle border-effect" src="http://myappmarketing.it/amministra/userlogos/' + item.logo + '" alt=" "></div>')
+							     .append('<div align="center" class="img-box"><img src="http://myappmarketing.it/amministra/userlogos/' + item.logo + '" alt=" "/></div></div>')
 								 .append('<div class="about-gd-right"><p>' + item.nome + '</p></div>')
                                  .append('<div class="about-gd-right"><p>' + item.descrizione + '</p></div>')
 								 .append('<div class="about-gd-right"><p>' + item.tel + '</p></div>')
