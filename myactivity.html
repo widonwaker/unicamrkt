@@ -81,7 +81,6 @@
 											<input type="button" class="submitbtn" name="submit" value="Aggiungi" onClick="register();">
 										</div>
 						     </form>
- 
                              <div id="riepilogo" style="display:none;">
                              <!-- ajax -->
                              </div>
@@ -113,8 +112,8 @@ var usermail = window.localStorage.getItem("email");
 							     .append('<div align="center" class="img-box"><img src="http://myappmarketing.it/amministra/userlogos/' + item.logo + '" alt=" "/></div></div>')
 								 .append('<div class="about-gd-right"><h3 align="center">' + item.nome + '</h3></div>')
                                  .append('<div class="about-gd-right"><p>' + item.descrizione + '</p></div>')
-								 .append('<div class="about-gd-right"><p><a class="hi-icon glyphicon glyphicon-earphone" style="background: #07A7CA"></a> <a href="tel:+39' + item.tel + '">' + item.tel + '</a></p></div>')
-                                 .append('<div class="clearfix"> </div>')
+								 .append('<div class="about-gd-right"><p><a class="hi-icon glyphicon glyphicon-earphone" style="color: #07A7CA"></a> <a href="tel:+39' + item.tel + '">' + item.tel + '</a></p></div>')
+                                 .append('<div class="clearfix"> </div><br>')
 								 .append('<div class="send"><input type="button" class="submitbtn" name="submit" value="Cancella" onClick="cancella();"></div>');;
                             //.appendTo('.month-graph');
 						   }
@@ -200,7 +199,7 @@ formData.append('file', $('input[type=file]')[0].files[0]);
   }
 }
 
-function cancella() {
+function cancellaOK() {
 	var usermail = window.localStorage.getItem("email");
     var formData = new FormData();
     formData.append('canc', 'cancella');
@@ -223,6 +222,21 @@ function cancella() {
     });
 	
 }
+
+    function onDelete(button) {
+        if (button == 'Cancella') cancellaOK();
+    }
+
+
+function cancella() {
+        navigator.notification.confirm(
+            'Sei sicuro di voler cancellare la tua attività? Tutte le immagini ad essa associate saranno perse.',  // message
+            onDelete,              // callback to invoke with index of button pressed
+            'Attenzione!',            // title
+            'Cancella,Annulla'          // buttonLabels
+        );
+    }
+
 </script>    
        </div> <!--fine jquery page -->     
 
