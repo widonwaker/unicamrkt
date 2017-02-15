@@ -277,6 +277,12 @@ h5.pro-link {
 .menu-notify {
     padding: 6px 0;
     background:#07A7CA /* #EA6153 */!important;
+	/* inizio fixed header */
+	z-index: 2;
+	position: fixed;
+	width: 100%;
+	top: 0;
+	/* fine fixed header */
 }
 
 .panel {
