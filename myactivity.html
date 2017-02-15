@@ -45,7 +45,7 @@
 <div data-role="page" id="register" class="sfondo">
 			<div class="contact" id="contact" >
 
-							<div class="menu-notify">
+							<div class="menu-notify" data-role="header" data-position="fixed">
 								 <div class="profile-left">
 					               <p style="visibility: hidden;">-</p>
 				                 </div>
@@ -60,6 +60,7 @@
 							<h3><!--Nuovo Utente--></h3>
 
 						<div class="sing-up-icon text-center" ></div>
+                        <br><br><br>
 					<form enctype="multipart/form-data" id="formadd" style="display:none">
 									<div class="styled-input">
 									  <input type="text" name="nome" id="nome" required />
@@ -224,10 +225,8 @@ function cancellaOK() {
 }
 
     function onDelete(button) {
-
         if (button == 1) 
 		    cancellaOK();  
-		
     }
 
 
