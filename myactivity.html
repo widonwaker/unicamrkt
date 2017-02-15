@@ -224,7 +224,11 @@ function cancellaOK() {
 }
 
     function onDelete(button) {
-        if (button == 'Cancella') cancellaOK();
+        if (button == 'Cancella') {
+		    cancellaOK();  
+		} else {
+			location.href="myactivity.html"; 
+		}
     }
 
 
