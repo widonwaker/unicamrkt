@@ -102,7 +102,7 @@ function loading(showOrHide) {
 	<div class="masthead pdng-stn1">
 		<div class="phone-box wrap push" id="home">
         <div class="parker" id="service">
-			<div class="menu-notify" data-role="header" data-position="fixed">
+			<div class="menu-notify">
 				<div class="profile-left">
 					<p style="visibility: hidden;">-</p>
 				</div>
@@ -136,22 +136,8 @@ function loading(showOrHide) {
   </div>
 </div>
 </div>
-  <script>
-$(document).ready(function() {
 
-	    if(window.localStorage.getItem("loggedIn") != 1) {
-            document.getElementById('menu_princ').style.display = "none";
-        } else {
-			document.getElementById('altro_menu').style.display = "none";
-		}
-});  
-</script>
 
-            <script>
-				$(document).on('pageshow', function(){
-				$('.menu-link').bigSlide();
-				});
-            </script>
 </div> <!-- end homepage -->
 
 

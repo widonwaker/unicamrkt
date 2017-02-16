@@ -22,14 +22,7 @@
 			 <!--script-->
 			 
             <script src="js/bigSlide.js"></script>
-            <script>
-				$(document).ready(function() {
-				$('.menu-link').bigSlide();
-				});
-            </script>
-
-
-            <!--script-->
+            
 			<!-- swipe box js -->
             <link rel="stylesheet" href="css/swipebox.css">
 	        <script src="js/jquery.swipebox.min.js"></script> 
@@ -39,85 +32,100 @@
 			});
 	        </script>
             <!-- //swipe box js -->
+           
 
 
 			
 		<!--script-->
 		<link href='//fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
 		<link href='//fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic' rel='stylesheet' type='text/css'>
-
     </head>
-
 <body>
-<div data-role="page" id="register" class="sfondo">
-			<div class="contact" id="contact" >
+<div data-role="page" id="prodotti" class="sfondo">
 
-							<div class="menu-notify" data-role="header" data-position="fixed">
-								 <div class="profile-left">
-					               <p style="visibility: hidden;">-</p>
-				                 </div>
-								<div class="Profile-mid">
-									<h5 class="pro-link">Attività</h5>
+
+            
+
+
+        <div class="parker" id="service">
+			<div class="menu-notify">
+				<div class="profile-left">
+					<i class="fa fa-plus" id="addprod" style="display:none;"></i></a>
+				</div>
+				<div class="Profile-mid">
+					<h5 class="pro-link">Prodotti</h5>
+				</div>
+				<div class="Profile-right">
+                   <a href="#" onClick="BackToDash()"><i class="fa fa-mail-reply"></i></a>
+				</div>
+				<div class="clearfix"></div>
+			</div> 
+            </div>
+            <br><br><br>
+            
+            <div id="notfound" style="display:none;">
+            <p align="center">Prima di poter aggiungere i tuoi prodotti, devi creare un'attività.</p>
+            </div>
+            
+			<div class="gallery-main" id="gallery" style="display:none;">
+							<div class="gallery">
+								 <h3><!--title--></h3>
+												<div class="gal-btm">
+						<div class="col-md-4 gal-gd text-center wow fadeInDownBig animated animated" data-wow-delay="0.4s">
+							<a href="images/r1.jpg" class="b-link-stripe b-animate-go  swipebox">
+								<div class="gallery-gal-effect slow-zoom horizontal">
+									<div class="img-box"><img src="images/r1.jpg" alt=" " /></div>
+										<div class="gallery-text-box">
+											<div class="gallery-gal-text">
+												<h4>Recipe App</h4>
+												<span class="separator"></span>
+												<p>Sit accusamus, vel blanditiis iure minima ipsa molestias minus laborum velit, nulla.</p>
+												<span class="separator"></span>
+											</div>
+										</div>
 								</div>
-								<div class="Profile-right">
-									<a href="#" onClick="location.href='dashboard.html'"><i class="fa fa-mail-reply"></i></a>
-								</div>
+							</a>
+						</div>
+
+						
 								<div class="clearfix"></div>
 							</div>
-							<h3><!--Nuovo Utente--></h3>
+						</div>
+					</div>
+                        
+                
+            
 
-						<div class="sing-up-icon text-center" ></div>
-                        <br><br><br>
-					<form enctype="multipart/form-data" id="formadd" style="display:none">
-									<div class="styled-input">
-									  <input type="text" name="nome" id="nome" required />
-									  <label>Nome*</label>
-									  <span></span> </div>
-									<div class="styled-input">
-									  <textarea name="desc" id="desc" required ></textarea>
-									  <label>Descrizione*</label>
-									  <span></span> </div>
-                                    <div class="styled-input">
-									  <input type="text" name="tel" id="tel" required />
-									  <label>Telefono*</label>
-									  <span></span> </div>  
-                                    <div class="styled-input">
-									  <input type="file" name="file" id="file"  />
-									  <label>Logo:</label>
-									  <span></span> </div>    
-										<div class="send">
-											<input type="button" class="submitbtn" name="submit" value="Aggiungi" onClick="register();">
-										</div>
-						     </form>
-                            
-
-                             <div id="riepilogo" style="display:none;">
-                             <!-- ajax -->
-                             </div>
-                             
             <div class="loader" style="display:none;">
               <center>
                  <img class="ajax-loader" src="images/loader.gif" alt="loading..">
               </center>
              </div>
-             
-			</div>
-            
-            <script>
+
+
+<script>
 var usermail = window.localStorage.getItem("email");
    $.ajax({
-        url: 'http://myappmarketing.it/amministra/production/app_activity.php',  //Server script to process data
+        url: 'http://myappmarketing.it/amministra/production/app_products.php',  //Server script to process data
         type: 'POST',
         data: { email: usermail },
+		beforeSend: function(){
+           $('.loader').show();
+        },
+        complete: function(){
+           $('.loader').hide();
+        },
         success: function (response, status) {
                         $.each(response, function (i, item) {
 						   if (item.conto != 1) {
-							   $("#formadd").show();
-							   $("#riepilogo").hide();
+							   $("#notfound").show();
+							   $("#gallery").hide();
+							   $("#addprod").hide();
 						   } else {
-							   $("#formadd").hide();
-							   $("#riepilogo").show();
-							   $('#riepilogo') 
+							   $("#notfound").hide();
+							   $("#gallery").show();
+							   $("#addprod").show();
+							   $('#gallery') 
 							     .append('<div class="profile-menu text-center">')
 								 .append('<div class="col-md-4 gal-gd text-center wow fadeInDownBig animated animated" data-wow-delay="0.4s">')
 								 .append('<div class="gallery-gal-effect slow-zoom horizontal">')
@@ -250,9 +258,12 @@ function cancella() {
         );
     }
 
-</script>    
-       </div> <!--fine jquery page -->     
+</script>    						
 
-        
+
+
+</div> <!-- end homepage -->
+
+
 </body>
 </html>

@@ -126,15 +126,15 @@ navigator.notification.alert(
 						<div class="col-sm-6 goal-icons">
 							<div class="goal">
 								<div class=" hi-icon-effect-6">
-										<a href="#saldopunti" class="hi-icon glyphicon glyphicon-piggy-bank"></a>
-										 <h4>Saldo Punti</h4>
+										<a href="#" onclick="toProducts()" class="hi-icon glyphicon glyphicon-tags"></a>
+										 <h4>Prodotti</h4>
 								</div>
 							</div>
 						</div>
 						<div class="col-sm-6 goal-icons">
 							<div class="goal">
 								<div class=" hi-icon-effect-6">
-										<a href="#set-6" class="hi-icon glyphicon glyphicon-tag"></a>
+										<a href="#set-6" class="hi-icon glyphicon glyphicon-gift"></a>
 										 <h4>Coupons</h4>
 								</div>
 							</div>
@@ -181,6 +181,10 @@ function toMyactivity() {
 
 function BackToDash() {
 	$(":mobile-pagecontainer").pagecontainer("change", "dashboard.html", {transition: "fade"} );
+}
+
+function toProducts() {
+	$(":mobile-pagecontainer").pagecontainer("change", "prodotti.html", {transition: "fade"} );
 }
 
 </script>  
