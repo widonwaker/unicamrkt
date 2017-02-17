@@ -14,8 +14,6 @@
             <link rel="stylesheet" href="css/jquery.mobile.custom.structure.css">
             
         <!--component-css-->
-            <script type="text/javascript" src="js/index.js"></script>
-            <script type="text/javascript" charset="utf-8" src="cordova.js"></script>   
 			<script src="js/jquery-2.1.4.min.js"></script>
             <script src="js/jquery.mobile.custom.min.js"></script>
 			<script src="js/bootstrap.min.js"></script>
@@ -26,11 +24,7 @@
 			<!-- swipe box js -->
             <link rel="stylesheet" href="css/swipebox.css">
 	        <script src="js/jquery.swipebox.min.js"></script> 
-	        <script type="text/javascript">
-			jQuery(function($) {
-				$(".swipebox").swipebox();
-			});
-	        </script>
+
             <!-- //swipe box js -->
            
 
@@ -56,7 +50,7 @@
 					<h5 class="pro-link">Prodotti</h5>
 				</div>
 				<div class="Profile-right">
-                   <a href="#" onClick="BackToDash()"><i class="fa fa-mail-reply"></i></a>
+                   <a href="#" onClick="location.href='dashboard.html'"><i class="fa fa-mail-reply"></i></a>
 				</div>
 				<div class="clearfix"></div>
 			</div> 
@@ -137,7 +131,11 @@ var usermail = window.localStorage.getItem("email");
 </script>
    						
 
-
+	        <script type="text/javascript">
+			jQuery(function($) {
+				$(".swipebox").swipebox();
+			});
+	        </script>
 
 </div> <!-- end homepage -->
 
