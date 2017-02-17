@@ -52,7 +52,7 @@
 <div data-role="page" id="register" class="sfondo">
 			<div class="contact" id="contact" >
 
-							<div class="menu-notify" data-role="header" data-position="fixed">
+							<div class="menu-notify" >
 								 <div class="profile-left">
 					               <p style="visibility: hidden;">-</p>
 				                 </div>
@@ -94,20 +94,7 @@
                              <div id="riepilogo" style="display:none;">
                              <!-- ajax -->
                              </div>
-                             
-                             			<div class="gallery-main" id="gallery">
-							<div class="gallery">
-								 <h3><!--title--></h3>
-												<div class="gal-btm">
-                             <div class="col-md-4 gal-gd text-center wow fadeInDownBig animated animated" data-wow-delay="0.4s">
-								 <div class="gallery-gal-effect slow-zoom horizontal">
-							     <div class="img-box"><img src="http://myappmarketing.it/amministra/userlogos/base.png" alt=" "/></div>
-								 </div></div>
                                  
-                                 <div class="clearfix"></div>
-							</div>
-						</div>
-					</div>
                     
             <div class="loader" style="display:none;">
               <center>
@@ -132,10 +119,7 @@ var usermail = window.localStorage.getItem("email");
 							   $("#formadd").hide();
 							   $("#riepilogo").show();
 							   $('#riepilogo') 
-								 .append('<div class="col-md-4 gal-gd text-center wow fadeInDownBig animated animated" data-wow-delay="0.4s">')
-								 .append('<div class="gallery-gal-effect slow-zoom horizontal">')
-							     .append('<div class="img-box"><img src="http://myappmarketing.it/amministra/userlogos/' + item.logo + '" alt=" "/></div>')
-								 .append('</div></div>')
+								 .append('<div class="col-md-4 gal-gd text-center wow fadeInDownBig animated animated" data-wow-delay="0.4s"><div class="gallery-gal-effect slow-zoom horizontal"><div class="img-box"><img src="http://myappmarketing.it/amministra/userlogos/' + item.logo + '" alt=" "/></div></div></div>')
 								 .append('<div class="about-gd-right"><h3 align="center">' + item.nome + '</h3></div>')
                                  .append('<div class="about-gd-right"><p>' + item.descrizione + '</p></div>')
 								 .append('<div class="about-gd-right"><p><a class="hi-icon glyphicon glyphicon-earphone" style="color: #07A7CA"></a> ' + item.tel + '</p></div>')
