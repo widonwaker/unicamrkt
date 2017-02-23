@@ -116,21 +116,23 @@ var usermail = window.localStorage.getItem("email");
         },
         success: function (response, status) {
                         $.each(response, function (i, item) {
-						   if (item.conto != 1) {
-							   $("#notfound").show();
-							   $("#gallery").hide();
-							   $("#addprod").hide();
-						   } else if (item.vuoto === "si") {
-							   $("#foundbutnon").show();
-							   $("#gallery").hide();
-							   $("#addprod").show();
-						   } else {
-							   $("#notfound").hide();
+						   if (response.length>1 && i>0) {
+
+							    $("#notfound").hide();
 							   $("#gallery").show();
 							   $("#addprod").show();
 							   $('.gal-btm') 
 							     .append('<div class="col-md-4 gal-gd text-center wow fadeInDownBig animated animated" data-wow-delay="0.4s"> <a href="http://myappmarketing.it/amministra/prodotti/' + item.path + '" class="b-link-stripe b-animate-go  swipebox"> <div class="gallery-gal-effect slow-zoom horizontal"> <div class="img-box"><img src="http://myappmarketing.it/amministra/prodotti/' + item.path + '" alt=" " /></div> <div class="gallery-text-box"> <div class="gallery-gal-text"> <h4>' + item.title + '</h4> <span class="separator"></span> <p>' + item.descrizione + '</p> <span class="separator"></span> </div></div></div></a></div>');
-						   }
+						  
+						   } else if (response.length===1 && item.vuoto =="si") {
+							   $("#foundbutnon").show();
+							   $("#gallery").hide();
+							   $("#addprod").show();
+						   } else {
+							   $("#notfound").show();
+							   $("#gallery").hide();
+							   $("#addprod").hide(); 
+							   }
                         });
 
                     }
