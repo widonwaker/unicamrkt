@@ -44,7 +44,7 @@
         <div class="parker" id="service">
 			<div class="menu-notify">
 				<div class="profile-left">
-					<i class="fa fa-plus" id="addprod" style="display:none;"></i></a>
+					<a href="#" onClick="location.href='prodotti_add.html'"><i class="fa fa-plus" id="addprod" style="display:none;"></i></a>
 				</div>
 				<div class="Profile-mid">
 					<h5 class="pro-link">Prodotti</h5>
@@ -59,6 +59,10 @@
             
             <div id="notfound" style="display:none;">
             <p align="center">Prima di poter aggiungere i tuoi prodotti, devi creare un'attività.</p>
+            </div>
+            
+            <div id="foundbutnon" style="display:none;">
+            <p align="center">Non hai ancora aggiunto dei prodotti. Clicca "+" in alto a sinistra per cominciare.</p>
             </div>
             
 			<div class="gallery-main" id="gallery" style="display:none;">
@@ -116,13 +120,15 @@ var usermail = window.localStorage.getItem("email");
 							   $("#notfound").show();
 							   $("#gallery").hide();
 							   $("#addprod").hide();
+						   } else if (item.vuoto === "si") {
+							   $("#foundbutnon").show();
+							   $("#gallery").hide();
 						   } else {
 							   $("#notfound").hide();
 							   $("#gallery").show();
 							   $("#addprod").show();
-							   $('#gallery') 
-							     .append('<div class="profile-menu text-center"></div>')
-								 .append('<div class="profile-menu text-center"></div>');
+							   $('.gal-btm') 
+							     .append('<div class="col-md-4 gal-gd text-center wow fadeInDownBig animated animated" data-wow-delay="0.4s"> <a href="http://myappmarketing.it/amministra/prodotti/' + item.path + '" class="b-link-stripe b-animate-go  swipebox"> <div class="gallery-gal-effect slow-zoom horizontal"> <div class="img-box"><img src="http://myappmarketing.it/amministra/prodotti/' + item.path + '" alt=" " /></div> <div class="gallery-text-box"> <div class="gallery-gal-text"> <h4>' + item.title + '</h4> <span class="separator"></span> <p>' + item.desc + '</p> <span class="separator"></span> </div></div></div></a></div>');
 						   }
                         });
 
