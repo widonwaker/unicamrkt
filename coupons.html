@@ -103,6 +103,28 @@ function deleteHandler () {
     );
 }
 
+	
+	function cancella(elem) {
+		alert(elem);
+	 $.ajax({
+        url: 'http://myappmarketing.it/amministra/production/app_coupons.php',  //Server script to process data
+        type: 'POST',
+        data: { canc: elem },
+        success: deleteHandler,
+        error: errorHandler,
+        beforeSend: function(){
+           $('.loader').show();
+        },
+        complete: function(){
+           $('.loader').hide();
+        },
+        cache: false,
+        contentType: false,
+        processData: false
+    });
+	
+}	
+	
 var usermail = window.localStorage.getItem("email");
    $.ajax({
         url: 'http://myappmarketing.it/amministra/production/app_coupons.php',  //Server script to process data
@@ -144,26 +166,7 @@ var usermail = window.localStorage.getItem("email");
                     }
     });
 	
-	function cancella(elem) {
-		alert(elem);
-	 $.ajax({
-        url: 'http://myappmarketing.it/amministra/production/app_coupons.php',  //Server script to process data
-        type: 'POST',
-        data: { canc: elem },
-        success: deleteHandler,
-        error: errorHandler,
-        beforeSend: function(){
-           $('.loader').show();
-        },
-        complete: function(){
-           $('.loader').hide();
-        },
-        cache: false,
-        contentType: false,
-        processData: false
-    });
-	
-}
+
 </script>
    						
 
