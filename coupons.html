@@ -102,6 +102,16 @@ function deleteHandler () {
     'Ok'                  // buttonName
     );
 }
+	
+function errorHandler () {
+	$('.loader').hide();
+	navigator.notification.alert(
+    'Riprova',  // message
+    SuccessDismiss,         // callback
+    'Si è verificato un errore!',            // title
+    'Ok'                  // buttonName
+    );
+}
 
 	
 	function cancella(elem) {
