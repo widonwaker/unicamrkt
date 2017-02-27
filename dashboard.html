@@ -137,7 +137,7 @@ navigator.notification.alert(
 						<div class="col-sm-6 goal-icons">
 							<div class="goal">
 								<div class=" hi-icon-effect-6">
-										<a href="#set-6" class="hi-icon glyphicon glyphicon-gift"></a>
+										<a href="#" onclick="toCoupons()" class="hi-icon glyphicon glyphicon-gift"></a>
 										 <h4>Coupons</h4>
 								</div>
 							</div>
@@ -190,6 +190,9 @@ function toProducts() {
 	$(":mobile-pagecontainer").pagecontainer("change", "prodotti.html", {transition: "fade"} );
 }
 
+function toCoupons() {
+	$(":mobile-pagecontainer").pagecontainer("change", "coupons.html", {transition: "fade"} );
+}
 </script>  
 
 </body>
