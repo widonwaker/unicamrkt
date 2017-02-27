@@ -44,7 +44,7 @@
         <div class="parker" id="service">
 			<div class="menu-notify">
 				<div class="profile-left">
-					<a href="#" onClick="location.href='prodotti_add.html'"><i class="fa fa-plus" id="addprod" style="display:none;"></i></a>
+					<a href="#" onClick="location.href='coupons_add.html'"><i class="fa fa-plus" id="addprod" style="display:none;"></i></a>
 				</div>
 				<div class="Profile-mid">
 					<h5 class="pro-link">Coupons</h5>
@@ -89,6 +89,20 @@
 
 
 <script>
+function SuccessDismiss() {
+   location.href='coupons.html';
+}	
+
+function deleteHandler () {
+	$('.loader').hide();
+	navigator.notification.alert(
+    'Coupon cancellato.',  // message
+    SuccessDismiss,         // callback
+    'Completato!',            // title
+    'Ok'                  // buttonName
+    );
+}
+
 var usermail = window.localStorage.getItem("email");
    $.ajax({
         url: 'http://myappmarketing.it/amministra/production/app_coupons.php',  //Server script to process data
