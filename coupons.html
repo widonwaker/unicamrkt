@@ -156,7 +156,7 @@ var usermail = window.localStorage.getItem("email");
 								 .append(item.descrizione+'<br>')
 								 .append(item.valido+'<br>')
 								 .append(item.codice+'<br>')
-								 .append('<a onclick="cancella('+item.id+');">cancella</a>');
+								 .append('<a href="#" onclick="cancella('+item.id+');">cancella</a>');
 						  
 						   } else if (response.length===1 && item.vuoto =="si") {
 							   $("#foundbutnon").show();

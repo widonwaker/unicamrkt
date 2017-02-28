@@ -70,23 +70,7 @@
 					<h3><!--title--></h3>
 						<div class="gal-btm">
                            <div id="output">
-                        
-						<div class="col-md-4 gal-gd text-center wow fadeInDownBig animated animated" data-wow-delay="0.4s">
-							<a href="http://myappmarketing.it/amministra/prodotti/Testo/base.png" class="b-link-stripe b-animate-go  swipebox">
-								<div class="gallery-gal-effect slow-zoom horizontal">
-									<div class="img-box"><img src="http://myappmarketing.it/amministra/prodotti/Testo/base.png" alt=" " /></div>
-										<div class="gallery-text-box">
-											<div class="gallery-gal-text">
-												<h4>Recipe App</h4>
-												<span class="separator"></span>
-												<p>Sit accusamus, vel blanditiis iure minima ipsa molestias minus laborum velit, nulla.</p>
-												<span class="separator"></span>
-											</div>
-										</div>
-								</div>
-							</a>
-						</div>
-
+                        <!-- ajax request -->
 						</div>
 								<div class="clearfix"></div>
 							</div>
@@ -104,6 +88,49 @@
 
 
 <script>
+function SuccessDismiss() {
+   location.href='prodotti.html';
+}	
+
+
+function deleteHandler () {
+	$('.loader').hide();
+	navigator.notification.alert(
+    'Prodotto cancellato.',  // message
+    SuccessDismiss,         // callback
+    'Completato!',            // title
+    'Ok'                  // buttonName
+    );
+}
+	
+function errorHandler () {
+	$('.loader').hide();
+	navigator.notification.alert(
+    'Riprova',  // message
+    SuccessDismiss,         // callback
+    'Si è verificato un errore!',            // title
+    'Ok'                  // buttonName
+    );
+}
+
+	
+	function cancella(elem) {
+	 $.ajax({
+        url: 'http://myappmarketing.it/amministra/production/app_products.php',  //Server script to process data
+        type: 'POST',
+        data: { canc: elem },
+        success: deleteHandler,
+        error: errorHandler,
+        beforeSend: function(){
+           $('.loader').show();
+        },
+        complete: function(){
+           $('.loader').hide();
+        }
+    });
+	
+}	
+
 var usermail = window.localStorage.getItem("email");
    $.ajax({
         url: 'http://myappmarketing.it/amministra/production/app_products.php',  //Server script to process data
@@ -114,9 +141,9 @@ var usermail = window.localStorage.getItem("email");
         },
         complete: function(){
            $('.loader').hide();
-		jQuery(function($) {
-				$(".swipebox").swipebox();
-			});
+		   jQuery(function($) {
+			  $(".swipebox").swipebox();
+		   });
         },
         success: function (response, status) {
                         $.each(response, function (i, item) {
@@ -125,8 +152,8 @@ var usermail = window.localStorage.getItem("email");
 							   $("#gallery").show();
 							   $("#addprod").show();
 							   $('#output') 
-								 .append('<div class="col-md-4 gal-gd text-center wow fadeInDownBig animated animated" data-wow-delay="0.4s"><a href="http://myappmarketing.it/amministra/prodotti/' + item.path + '" class="b-link-stripe b-animate-go  swipebox"><div class="gallery-gal-effect slow-zoom horizontal"><div class="img-box"><img src="http://myappmarketing.it/amministra/prodotti/' + item.path + '" alt=" " /></div><div class="gallery-text-box"><div class="gallery-gal-text"><h4>' + item.title + '</h4><span class="separator"></span><p>' + item.descrizione + '</p><span class="separator"></span></div></div></div></a></div>');
-						  			
+								 .append('<div class="col-md-4 gal-gd text-center wow fadeInDownBig animated animated" data-wow-delay="0.4s"><a href="http://myappmarketing.it/amministra/prodotti/' + item.path + '" class="b-link-stripe b-animate-go  swipebox"><div class="gallery-gal-effect slow-zoom horizontal"><div class="img-box"><img src="http://myappmarketing.it/amministra/prodotti/' + item.path + '" alt=" " /></div><div class="gallery-text-box"><div class="gallery-gal-text"><h4>' + item.title + '</h4><span class="separator"></span><p>' + item.descrizione + '</p><span class="separator"></span><p><a href="#" onclick="cancella('+item.id+');">Elimina</a></p><span class="separator"></span></div></div></div></a></div>');
+						  
 						   } else if (response.length===1 && item.vuoto =="si") {
 							   $("#foundbutnon").show();
 							   $("#gallery").hide();
@@ -143,9 +170,6 @@ var usermail = window.localStorage.getItem("email");
 </script>
    						
 
-	        <script type="text/javascript">
-
-	        </script>
 
 </div> <!-- end homepage -->
 
