@@ -40,8 +40,8 @@
 
             
 
-
         <div class="parker" id="service">
+        
 			<div class="menu-notify">
 				<div class="profile-left">
 					<a href="#" onClick="location.href='coupons_add.html'"><i class="fa fa-plus" id="addprod" style="display:none;"></i></a>
@@ -65,18 +65,16 @@
             <p align="center">Non hai ancora aggiunto dei codici sconto. Clicca "+" in alto a sinistra per cominciare.</p>
             </div>
             
-			<div class="gallery-main" id="gallery" style="display:none;">
-				<div class="gallery">
-					<h3><!--title--></h3>
-						<div class="gal-btm">
-                           <div id="output">
-                            <!-- ajax request -->                        
- 
-						</div>
-								<div class="clearfix"></div>
-							</div>
-						</div>
+		<div class="goals">
+
+					<div class="recipes" id="recipes">
+						<h3><!-- --></h3>
+                        <div id="output"><!-- ajax request--></div>
+						
+						<div class="clearfix"></div>
 					</div>
+					
+			</div>
                         
                 
             
@@ -152,11 +150,8 @@ var usermail = window.localStorage.getItem("email");
 							   $("#gallery").show();
 							   $("#addprod").show();
 							   $('#output') 
-								 .append(item.nome+'<br>')
-								 .append(item.descrizione+'<br>')
-								 .append(item.valido+'<br>')
-								 .append(item.codice+'<br>')
-								 .append('<a href="#" onclick="cancella('+item.id+');">cancella</a>');
+							   .append('<div class="col-sm-6 goal-left recipe"><div class="goal-img"><img src="images/r1.jpg" alt=" " onclick="cancella('+item.id+');" /></div><div class="goal-info"><h4>'+item.codice+'</h4><p>'+item.nome+'<br>'+item.descrizione+'<br><br>Valido fino al: '+item.valido+'</p></div><div class="clearfix"></div></div>');
+								 
 						  
 						   } else if (response.length===1 && item.vuoto =="si") {
 							   $("#foundbutnon").show();
