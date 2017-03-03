@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="it">
+	<head>
+        <title>Marketing UNICA</title>
+		<meta name="viewport" content="width=device-width; user-scalable=no" >
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <!--font-awsome-css-->
+           <link rel="stylesheet" href="css/font-awesome.min.css"> 
+		<!--bootstrap-->
+			<link href="css/bootstrap.min.css" rel="stylesheet" type="text/css">
+		<!--custom css-->
+			<link href="css/style.css" rel="stylesheet" type="text/css"/>
+			<link rel="stylesheet" href="css/percircle.css">
+            <link rel="stylesheet" href="css/jquery.mobile.custom.structure.css">
+            
+        <!--component-css-->
+            <script type="text/javascript" charset="utf-8" src="cordova.js"></script>   
+			<script src="js/jquery-2.1.4.min.js"></script>
+            <script src="js/jquery.mobile.custom.min.js"></script>
+			<script src="js/bootstrap.min.js"></script>
+
+
+
+			
+		<!--script-->
+		<link href='//fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+		<link href='//fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic' rel='stylesheet' type='text/css'>
+
+    </head>
+
+<body>
+<div data-role="page" id="register" class="sfondo">
+			<div class="contact" id="contact" >
+
+							<div class="menu-notify" >
+								 <div class="profile-left">
+					               <p style="visibility: hidden;">-</p>
+				                 </div>
+								<div class="Profile-mid">
+									<h5 class="pro-link">Aggiungi</h5>
+								</div>
+								<div class="Profile-right">
+									<a href="#" data-rel="back"><i class="fa fa-mail-reply"></i></a>
+								</div>
+								<div class="clearfix"></div>
+							</div>
+							<h3><!--Nuovo Utente--></h3>
+
+						<div class="sing-up-icon text-center" ></div>
+                        <br><br><br>
+					<form enctype="multipart/form-data" id="formadd">
+									<div class="styled-input">
+									  <input type="text" name="title" id="title" required />
+									  <label>Titolo*</label>
+									  <span></span> </div>
+									<div class="styled-input">
+									  <textarea name="desc" id="desc" required ></textarea>
+									  <label>Descrizione*</label>
+									  <span></span> </div>  
+                                    <div class="styled-input">
+									  <input data-role="date" type="text" name="valido" id="valido" placeholder="Formato: gg/mm/aaaa" />
+									  <label>Valido fino al *</label>
+									  <span></span> </div>    
+										<div class="send">
+											<input type="button" class="submitbtn" name="submit" value="Aggiungi" onClick="addCoupon();">
+										</div>
+						     </form>
+                                 
+                    
+            <div class="loader" style="display:none;">
+              <center>
+                 <img class="ajax-loader" src="images/loader.gif" alt="loading..">
+              </center>
+             </div>
+             
+			</div>
+            
+   
+  <script>
+function SuccessDismiss() {
+   location.href='coupon.html';
+}	
+function FailedDismiss() {
+    //
+}	
+
+
+function completeHandler () {
+	$('.loader').hide();
+	navigator.notification.alert(
+    'Coupon Aggiunto',  // message
+    SuccessDismiss,         // callback
+    'Completato.',            // title
+    'Ok'                  // buttonName
+    );
+}
+
+
+function errorHandler() {
+	$('.loader').hide();
+	navigator.notification.alert(
+    'Qualcosa è andato storto. Riprova.',  // message
+    FailedDismiss,         // callback
+    'Errore!',            // title
+    'Ok'                  // buttonName
+     );
+}
+
+function addCoupon(){
+var usermail = window.localStorage.getItem("email");
+var formData = new FormData();
+formData.append('title', $("#title").val());
+formData.append('desc', $("#desc").val());
+formData.append('valido', $("#valido").val());
+formData.append('email', usermail);
+
+  if ($("#title").val(), $("#desc").val(), $("#valido").val() ) {
+
+    $.ajax({
+        url: 'http://myappmarketing.it/amministra/production/regcoupon.php',  //Server script to process data
+        type: 'POST',
+        data: formData,
+        success: completeHandler,
+        error: errorHandler,
+        beforeSend: function(){
+           $('.loader').show();
+        },
+        complete: function(){
+           $('.loader').hide();
+        },
+        cache: false,
+        contentType: false,
+        processData: false
+    });
+  } else {
+	 navigator.notification.alert(
+    'Compilare i campi obbligatori (*)',  // message
+    FailedDismiss,         // callback
+    'Attenzione!',            // title
+    'Ok'                  // buttonName
+    );
+  }
+}
+
+
+</script>    
+       </div> <!--fine jquery page -->     
+
+        
+</body>
+</html>
