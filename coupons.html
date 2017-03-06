@@ -150,7 +150,7 @@ var usermail = window.localStorage.getItem("email");
 							   $(".goals").show();
 							   $("#addprod").show();
 							   $('#output') 
-							   .append('<div class="col-sm-6 goal-left recipe"><div class="goal-img"><img src="images/r1.jpg" alt=" " onclick="cancella('+item.id+');" /></div><div class="goal-info"><h4>'+item.codice+'</h4><p>'+item.nome+'<br>'+item.descrizione+'<br><br>Valido fino al: '+item.valido+'</p></div><div class="clearfix"></div></div>');
+							   .append('<div class="col-sm-6 goal-left recipe"><div class="goal-img"><img src="images/coupon_base_b.png" alt=" " onclick="cancella('+item.id+');" /></div><div class="goal-info"><h4>'+item.codice+'</h4><p>'+item.nome+'<br>'+item.descrizione+'<br><br>Valido fino al: '+item.valido+'</p><br><br> <p class="linked" onClick="cancella('+item.id+');"># Cancella #</p> </div><div class="clearfix"></div></div>');
 								 
 						  
 						   } else if (response.length===1 && item.vuoto =="si") {
