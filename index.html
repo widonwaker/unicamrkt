@@ -2,7 +2,7 @@
 <html lang="it">
 	<head>
         <title>Marketing UNICA</title>
-		<meta name="viewport" content="width=device-width, height=device-height, user-scalable=no" >
+		<meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, user-scalable=no" >
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <!--font-awsome-css-->
            <link rel="stylesheet" href="css/font-awesome.min.css"> 
@@ -34,11 +34,7 @@
 			<!-- swipe box js -->
             <link rel="stylesheet" href="css/swipebox.css">
 	        <script src="js/jquery.swipebox.min.js"></script> 
-	        <script type="text/javascript">
-			jQuery(function($) {
-				$(".swipebox").swipebox();
-			});
-	        </script>
+
             <!-- //swipe box js -->
 
 
@@ -64,8 +60,8 @@
                     }
                 });
        
-    </script>     
- 
+    </script>  
+       
     </head>
 <body>
 <div data-role="page" id="indexhome" class="sfondo">
@@ -126,26 +122,24 @@
             Contenuto qui <br>
             Contenuto qui <br>
              Contenuto qui <br>
-            Contenuto qui <br>
-            Contenuto qui <br>
-             Contenuto qui <br>
-            Contenuto qui <br>
-            Contenuto qui <br>
-             Contenuto qui <br>
-            Contenuto qui <br>
-            Contenuto qui <br>
-             Contenuto qui <br>
-            Contenuto qui <br>
-            Contenuto qui <br>
-            <input type="hidden" class="pagenum" value="1" /><input type="hidden" class="total-page" value="10" />
-            <div id="output"></div>
+
+            
                 </div>
             
-
-
-
-
-						
+            
+            <div id="preoutput"></div>
+			<div class="gallery-main" id="gallery">
+				<div class="gallery">
+					<h3><!--title--></h3>
+						<div class="gal-btm">
+                           <div id="output">
+                        <!-- ajax request -->
+						</div>
+								<div class="clearfix"></div>
+							</div>
+						</div>
+					</div>
+                    			
   </div>
 </div>
 </div>
@@ -199,6 +193,38 @@ function BackToDash() {
 	$(":mobile-pagecontainer").pagecontainer("change", "dashboard.html", {transition: "fade"} );
 }
 
+           $.ajax('http://myappmarketing.it/amministra/production/app_index.php', 
+                {
+                    dataType: "json",
+                    jsonp: "jsoncallback",
+                    method: 'get',
+                    contentType: 'application/json',
+					beforeSend: function(){
+                      $('.loader').show();
+                    },
+					complete: function(){
+                      $('.loader').hide();
+                      
+                    },
+                    success: function (data, status) {
+                        $.each(data, function (i, item) {
+		   if(i===0) {
+			   $('#preoutput') 
+		    .append('<input type="hidden" class="pagenum" value="1" /><input type="hidden" class="total-page" value="' + item.pagetot + '" />');
+		   }
+		   
+			if (i>0) {
+		   $('#output') 		
+			.append('<div class="col-md-4 gal-gd text-center wow fadeInDownBig animated animated" data-wow-delay="0.4s"> <a class="b-link-stripe b-animate-go swipebox" href="http://myappmarketing.it/amministra/userlogos/' + item.logo + '"> <div class="gallery-gal-effect slow-zoom horizontal"> <div class="img-box"> <img src="http://myappmarketing.it/amministra/userlogos/' + item.logo + '" alt="" /> </div> <div class="gallery-text-box"> <div class="gallery-gal-text"> <h4>' + item.nome + '</h4> <span class="separator"></span> <p>' + item.descrizione + '</p> <span class="separator"></span> <p class="hi-icon glyphicon glyphicon-earphone" style="color: #07A7CA">' + item.tel + '</p> <span class="separator"></span> </div> </div> </div> </a> </div>');
+			}
+							
+                        });
+                    },
+                    error: function (xhr, d, s) {
+                       // $('#output').empty().html(s);
+                    }
+                });
+
 var pagina;
 var pagine;
 function getresult(url) {
@@ -215,6 +241,9 @@ $('.loader').show();
 },
 complete: function(){
 $('.loader').hide();
+jQuery(function($) {
+	$(".swipebox").swipebox();
+});
 },
 success: function (response, status) {
        $.each(response, function (i, item) {
@@ -223,35 +252,59 @@ success: function (response, status) {
 		   }
 		   if(i===1) {
 			   pagine = item.pages;
-			   $('#output') 
+			   $('#preoutput') 
 		    .append('<input type="hidden" class="pagenum" value="' + pagina + '" /><input type="hidden" class="total-page" value="' + pagine + '" />');
 		   }
 		   
 			if (i>1) {
 		   $('#output') 		
-			.append(item.id+'<br>'+item.nome+'<br>'+item.descrizione+'<br>'+item.tel+'<br>'+item.logo+'<br>');
+			.append('<div class="col-md-4 gal-gd text-center wow fadeInDownBig animated animated" data-wow-delay="0.4s"> <a class="b-link-stripe b-animate-go swipebox" href="http://myappmarketing.it/amministra/userlogos/' + item.logo + '"> <div class="gallery-gal-effect slow-zoom horizontal"> <div class="img-box"> <img src="http://myappmarketing.it/amministra/userlogos/' + item.logo + '" alt="" /> </div> <div class="gallery-text-box"> <div class="gallery-gal-text"> <h4>' + item.nome + '</h4> <span class="separator"></span> <p>' + item.descrizione + '</p> <span class="separator"></span> <p class="hi-icon glyphicon glyphicon-earphone" style="color: #07A7CA"> ' + item.tel + '</p> <span class="separator"></span> </div> </div> </div> </a> </div>');
 			}
 								 		   
 });		   
 },
   error: function(XMLHttpRequest, textStatus, errorThrown) {
-     alert(errorThrown);
+     //alert(errorThrown);
   }        
 });
 }
 
-$(window).scroll(function(){
-if ($(window).scrollTop() == $(document).height() - $(window).height()){
-if($(".pagenum:last").val() <= $(".rowcount").val()) {
+function getScrollXY() {
+    var scrOfX = 0, scrOfY = 0;
+    if( typeof( window.pageYOffset ) == 'number' ) {
+        //Netscape compliant
+        scrOfY = window.pageYOffset;
+        scrOfX = window.pageXOffset;
+    } else if( document.body && ( document.body.scrollLeft || document.body.scrollTop ) ) {
+        //DOM compliant
+        scrOfY = document.body.scrollTop;
+        scrOfX = document.body.scrollLeft;
+    } else if( document.documentElement && ( document.documentElement.scrollLeft || document.documentElement.scrollTop ) ) {
+        //IE6 standards compliant mode
+        scrOfY = document.documentElement.scrollTop;
+        scrOfX = document.documentElement.scrollLeft;
+    }
+    return [ scrOfX, scrOfY ];
+}
+
+//taken from http://james.padolsey.com/javascript/get-document-height-cross-browser/
+function getDocHeight() {
+    var D = document;
+    return Math.max(
+        D.body.scrollHeight, D.documentElement.scrollHeight,
+        D.body.offsetHeight, D.documentElement.offsetHeight,
+        D.body.clientHeight, D.documentElement.clientHeight
+    );
+}
+
+document.addEventListener("scroll", function (event) {
+    if (getDocHeight() == getScrollXY()[1] + window.innerHeight) {
+        if(parseInt($(".pagenum:last").val()) < parseInt($(".total-page").val())) {
 var pagenum = parseInt($(".pagenum:last").val()) + 1;
 getresult('http://myappmarketing.it/amministra/production/app_index.php?page='+pagenum);
 }
-}
+    }
 });
-
-/*$( document ).ready(function() {
-getresult('http://myappmarketing.it/amministra/production/app_index.php?page=1');
-});*/
 </script>
 </body>
 </html>
