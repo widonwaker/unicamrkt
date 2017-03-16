@@ -103,7 +103,7 @@
 				<div class="clearfix"></div>
 			</div> 
             <br><br><br>
-
+ 
 
             
                 </div>
@@ -163,8 +163,9 @@ $(document).on('pageinit', function(){
 
 
 
-function toLogin() {
-	$(":mobile-pagecontainer").pagecontainer("change", "login.html", {transition: "fade"} );
+function toDetails(id) {
+	window.localStorage.setItem("activid", id);
+	$(":mobile-pagecontainer").pagecontainer("change", "activity_details.html", {transition: "fade"} );
 }
 
 function toReg() {
@@ -174,6 +175,12 @@ function toReg() {
 function BackToDash() {
 	$(":mobile-pagecontainer").pagecontainer("change", "dashboard.html", {transition: "fade"} );
 }
+
+function toLogin() {
+	$(":mobile-pagecontainer").pagecontainer("change", "login.html", {transition: "fade"} );
+}
+
+var lb = [];
 
            $.ajax('http://myappmarketing.it/amministra/production/app_index.php', 
                 {
@@ -197,7 +204,12 @@ function BackToDash() {
 		   
 			if (i>0) {
 		   $('#output') 		
-			.append('<div class="col-md-4 gal-gd text-center wow fadeInDownBig animated animated" data-wow-delay="0.4s"> <a class="b-link-stripe b-animate-go swipebox" href="http://myappmarketing.it/amministra/userlogos/' + item.logo + '"> <div class="gallery-gal-effect slow-zoom horizontal"> <div class="img-box"> <img src="http://myappmarketing.it/amministra/userlogos/' + item.logo + '" alt="" /> </div> <div class="gallery-text-box"> <div class="gallery-gal-text"> <h4>' + item.nome + '</h4> <span class="separator"></span> <p>' + item.descrizione + '</p> <span class="separator"></span> <p class="hi-icon glyphicon glyphicon-earphone" style="color: #07A7CA">' + item.tel + '</p> <span class="separator"></span> </div> </div> </div> </a> </div>');
+			.append('<div class="col-md-4 gal-gd text-center wow fadeInDownBig animated animated" data-wow-delay="0.4s"> <a class="b-link-stripe b-animate-go swipebox" href="http://myappmarketing.it/amministra/userlogos/' + item.logo + '" > <div class="gallery-gal-effect slow-zoom horizontal"> <div class="img-box"> <img src="http://myappmarketing.it/amministra/userlogos/' + item.logo + '" alt=""  /> </div> <div class="gallery-text-box"> <div class="gallery-gal-text"> <h4>' + item.nome + '</h4> <span class="separator"></span> <p>' + item.descrizione + '</p> <span class="separator"></span> <div class="send"><input type="button" class="submitbtn" name="submit" value="Aggiungi" onCLick="toDetails('+item.id+')"></div> </div> </div> </div> </a> </div>')
+			
+			$(".swipebox").swipebox( [
+		{ href:'http://myappmarketing.it/amministra/userlogos/'+item.logo, title:item.nome }
+	] );
+			
 			}
 							
                         });
@@ -221,11 +233,9 @@ data:  {rowcount:$("#rowcount").val()},
 beforeSend: function(){
 $('.loader').show();
 },
-complete: function(){
+complete: function(e){
 $('.loader').hide();
-jQuery(function($) {
-	$(".swipebox").swipebox();
-});
+
 },
 success: function (response, status) {
        $.each(response, function (i, item) {
@@ -240,8 +250,12 @@ success: function (response, status) {
 		   
 			if (i>1) {
 		   $('#output') 		
-			.append('<div class="col-md-4 gal-gd text-center wow fadeInDownBig animated animated" data-wow-delay="0.4s"> <a class="b-link-stripe b-animate-go swipebox" href="http://myappmarketing.it/amministra/userlogos/' + item.logo + '"> <div class="gallery-gal-effect slow-zoom horizontal"> <div class="img-box"> <img src="http://myappmarketing.it/amministra/userlogos/' + item.logo + '" alt="" /> </div> <div class="gallery-text-box"> <div class="gallery-gal-text"> <h4>' + item.nome + '</h4> <span class="separator"></span> <p>' + item.descrizione + '</p> <span class="separator"></span> <p class="hi-icon glyphicon glyphicon-earphone" style="color: #07A7CA"> ' + item.tel + '</p> <span class="separator"></span> </div> </div> </div> </a> </div>');
-			}
+			.append('<div class="col-md-4 gal-gd text-center wow fadeInDownBig animated animated" data-wow-delay="0.4s"> <a class="b-link-stripe b-animate-go swipebox" href="http://myappmarketing.it/amministra/userlogos/' + item.logo + '"> <div class="gallery-gal-effect slow-zoom horizontal"> <div class="img-box"> <img src="http://myappmarketing.it/amministra/userlogos/' + item.logo + '" alt="" /> </div> <div class="gallery-text-box"> <div class="gallery-gal-text"> <h4>' + item.nome + '</h4> <span class="separator"></span> <p>' + item.descrizione + '</p> <span class="separator"></span> <div class="send"><input type="button" class="submitbtn" name="submit" value="Aggiungi" onCLick="toDetails('+item.id+')"></div> </div> </div> </div> </a> </div>');
+			$(".swipebox").swipebox( [
+		{ href:'http://myappmarketing.it/amministra/userlogos/'+item.logo, title:item.nome }
+	] );
+			
+			} // fine IF statement
 								 		   
 });		   
 },
@@ -287,6 +301,7 @@ getresult('http://myappmarketing.it/amministra/production/app_index.php?page='+p
 }
     }
 });
+
 </script>
 </body>
 </html>

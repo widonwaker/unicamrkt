@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="it">
+	<head>
+        <title>Marketing UNICA</title>
+		<meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, user-scalable=no" >
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <!--font-awsome-css-->
+           <link rel="stylesheet" href="css/font-awesome.min.css"> 
+		<!--bootstrap-->
+			<link href="css/bootstrap.min.css" rel="stylesheet" type="text/css">
+		<!--custom css-->
+			<link href="css/style.css" rel="stylesheet" type="text/css"/>
+			<link rel="stylesheet" href="css/percircle.css">
+            <link rel="stylesheet" href="css/jquery.mobile.custom.structure.css">
+            
+        <!--component-css-->
+			<script src="js/jquery-2.1.4.min.js"></script>
+            <script src="js/jquery.mobile.custom.min.js"></script>
+			<script src="js/bootstrap.min.js"></script>
+			 <!--script-->
+          
+
+
+            <!--script-->
+			<!-- swipe box js -->
+            <link rel="stylesheet" href="css/swipebox.css">
+	        <script src="js/jquery.swipebox.min.js"></script> 
+
+            <!-- //swipe box js -->
+
+
+			
+		<!--script-->
+		<link href='//fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+		<link href='//fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic' rel='stylesheet' type='text/css'>
+        </head>
+        <body>
+        <div data-role="page" id="actdetails" class="sfondo">
+        
+		    
+        
+                <div class="parker" id="service">
+			<div class="menu-notify" data-role="header">
+				<div class="profile-left">
+					<!-- icona sinistra -->
+				</div>
+				<div class="Profile-mid">
+					<h5 class="pro-link">Unica</h5>
+				</div>
+				<div class="Profile-right">
+                   <a href="#" data-rel="back"><i class="fa fa-mail-reply"></i></a>
+				</div>
+				<div class="clearfix"></div>
+			</div> 
+            <script src="js/easyResponsiveTabs.js" type="text/javascript"></script>
+						<script type="text/javascript">
+							$(document).ready(function () {
+								$('#horizontalTab').easyResponsiveTabs({
+									type: 'default', //Types: default, vertical, accordion           
+									width: 'auto', //auto or any width like 600px
+									fit: true   // 100% fit in a container
+								});
+							});
+							
+						</script>
+            <br><br><br>
+ 
+
+            
+                </div> 
+
+                              <div class="sap_tabs">
+								<div id="horizontalTab" style="display: block; width: 100%; margin: 0px;">
+									  <ul class="resp-tabs-list">
+										  <li class="resp-tab-item resp-tab-active" aria-controls="tab_item-0" role="tab"><span>Attività</span></li>
+										  <li class="resp-tab-item" aria-controls="tab_item-1" role="tab"><span>Prodotti</span></li>
+										  <li class="resp-tab-item" aria-controls="tab_item-2" role="tab"><span>Coupons</span></li>
+										  <div class="clearfix"></div>
+									  </ul>				  	 
+									<div class="resp-tabs-container">
+										<h2 class="resp-accordion resp-tab-active" role="tab" aria-controls="tab_item-0"><span class="resp-arrow"></span>Statistics</h2><div class="tab-1 resp-tab-content resp-tab-content-active" aria-labelledby="tab_item-0" style="display:block">
+											<div class="tab_img">
+												<div class="gallery-main" id="gallery">
+				                                   <div class="gallery">
+					                                   <h3><!--title--></h3>
+						                                  <div class="gal-btm">
+                                                             <div id="outputA" style="text-align:center;">
+                                                                <!-- ajax request -->
+						                                     </div>
+								                          <div class="clearfix"></div>
+							                           </div>
+						                            </div>
+					                             </div>
+											</div>
+										</div>
+										<h2 class="resp-accordion" role="tab" aria-controls="tab_item-1"><span class="resp-arrow"></span>Work Report</h2><div class="tab-2 resp-tab-content" aria-labelledby="tab_item-1">
+											<div class="tab_img">
+												<div class="gallery-main" id="gallery2">
+				                                   <div class="gallery">
+					                                   <h3><!--title--></h3>
+						                                  <div class="gal-btm">
+                                                             <div id="outputB" style="text-align:center;">
+                                                                <!-- ajax request -->
+						                                     </div>
+								                          <div class="clearfix"></div>
+							                           </div>
+						                            </div>
+					                             </div>
+											</div>
+										</div>
+										<h2 class="resp-accordion" role="tab" aria-controls="tab_item-2"><span class="resp-arrow"></span>Our History</h2><div class="tab-1 resp-tab-content" aria-labelledby="tab_item-2">
+											<div class="tab_img">
+                                                <div class="goals">
+                                                   <div class="recipes" id="recipes">
+						                              <h3><!-- --></h3>
+                                                         <div id="outputC"><!-- ajax request--></div>
+						
+						                                 <div class="clearfix"></div>
+					                                  </div>
+					                               </div>
+											</div>
+										</div>
+									</div>
+								</div>
+						</div>
+
+<script src="js/jquery.nicescroll.js"></script>
+<script>     
+
+            activid = window.localStorage.getItem("activid");
+
+/* Elenco campi: nome, descrizione, tel, logo, path, title, descprod, coupname, coupdesc, valido, codice */
+           $.ajax('http://myappmarketing.it/amministra/production/app_details.php', 
+                {
+                    //dataType: "json",
+                    //jsonp: "jsoncallback",
+                    //method: 'post',
+					type: 'POST',
+					data: { postid: activid },
+                    //contentType: 'application/json',
+					beforeSend: function(){
+                      $('.loader').show();
+                    },
+					complete: function(){
+                      $('.loader').hide();
+                      $('.swipebox').swipebox();
+                    },
+                    success: function (data, status) {
+						
+                        $.each(data, function (i) {
+							
+							switch(i) {
+                               case 0: 
+							        $.each(data[i], function (index, item) {
+							           $('#outputA')
+							           .append('<div class="col-md-4 gal-gd text-center wow fadeInDownBig animated animated" data-wow-delay="0.4s"> <a class="b-link-stripe b-animate-go swipebox" href="http://myappmarketing.it/amministra/userlogos/' + item.logo + '" > <div class="gallery-gal-effect slow-zoom horizontal"> <div class="img-box"> <img src="http://myappmarketing.it/amministra/userlogos/' + item.logo + '" alt=""  /> </div> <div class="gallery-text-box"> <div class="gallery-gal-text"> <h4>' + item.nome + '</h4> <span class="separator"></span> <p>' + item.descrizione + '</p> <span class="separator"></span>  </div> </div> </div> </a> </div>')
+									   .append('<p class="hi-icon glyphicon glyphicon-earphone" style="color: #07A7CA"></p> <a href="tel:+39'+ item.tel +'" style="color: #07A7CA; display:inline;"><b>' + item.tel + '</b></a>');
+							        });
+									break;
+							   case 1: 
+							        $.each(data[i], function (index, item) {
+							           $('#outputB') 
+								       .append('<div class="col-md-4 gal-gd text-center wow fadeInDownBig animated animated" data-wow-delay="0.4s"> <a class="b-link-stripe b-animate-go swipebox" href="http://myappmarketing.it/amministra/prodotti/' + item.path + '"> <div class="gallery-gal-effect slow-zoom horizontal"> <div class="img-box"> <img src="http://myappmarketing.it/amministra/prodotti/' + item.path + '" alt="" /> </div> <div class="gallery-text-box"> <div class="gallery-gal-text"> <h4>' + item.title + '</h4> <span class="separator"></span> <p>' + item.descrizione + '</p> <span class="separator"></span> </div> </div> </div> </a> </div>');
+							        });
+									break;	
+							   case 2: 
+							        $.each(data[i], function (index, item) {
+							           $('#outputC')
+							           .append('<div class="col-sm-6 goal-left recipe"><div class="goal-img"><img src="images/coupon_base_b.png" alt=" " onclick="cancella('+item.id+');" /></div><div class="goal-info"><h4>'+item.codice+'</h4><p>'+item.nome+'<br>'+item.descrizione+'<br><br>Valido fino al: '+item.valido+'</p> </div><div class="clearfix"></div></div>');
+							        });
+									break;
+							}
+							
+                        });
+                    },
+                    error: function (xhr, d, s) {
+						alert(s);
+                       // $('#output').empty().html(s);
+                    }
+                });</script>
+</div> <!-- fine jquery mobile page -->                       
+</body>
+ </html>
