@@ -58,7 +58,8 @@
 									<h5 class="pro-link">Attività</h5>
 								</div>
 								<div class="Profile-right">
-									<a href="#" onClick="location.href='dashboard.html'"><i class="fa fa-mail-reply"></i></a>
+									<a href="#" id="mainback" onClick="location.href='dashboard.html'"><i class="fa fa-mail-reply"></i></a> 
+                                    <a style="display:none;" href="#" id="secondaryback" onClick="location.href='myactivity.html'"><i class="fa fa-mail-reply"></i></a>
 								</div>
 								<div class="clearfix"></div>
 							</div>
@@ -92,6 +93,10 @@
                              <div id="riepilogo" style="display:none;">
                              <!-- ajax -->
                              </div>
+                             
+                             <div id="modifica" style="display:none;">
+                             <!-- ajax -->
+                             </div>
                                  
                     
             <div class="loader" style="display:none;">
@@ -122,6 +127,7 @@ var usermail = window.localStorage.getItem("email");
                                  .append('<div class="about-gd-right"><p>' + item.descrizione + '</p></div>')
 								 .append('<div class="about-gd-right"><p><a class="hi-icon glyphicon glyphicon-earphone" style="color: #07A7CA"></a> ' + item.tel + '</p></div>')
                                  .append('<div class="clearfix"> </div><br>')
+								 .append('<div class="send"><input type="button" class="submitbtn" name="submit" value="Modifica" onClick="modifica();" /></div>')
 								 .append('<div class="send"><input type="button" class="submitbtn" name="submit" value="Cancella" onClick="cancella();"></div>');
 						   }
                         });
@@ -169,8 +175,16 @@ function errorHandler() {
      );
 }
 
+function updateHandler() {
+	alert("ok");
+}
+
+function updateErrorHandler() {
+	alert("errore");
+}
+
 function register(){
-var usermail = window.localStorage.getItem("email");
+//var usermail = window.localStorage.getItem("email");
 var formData = new FormData();
 formData.append('nome', $("#nome").val());
 formData.append('desc', $("#desc").val());
@@ -206,8 +220,74 @@ formData.append('file', $('input[type=file]')[0].files[0]);
   }
 }
 
+function modifica() {
+	//var usermail = window.localStorage.getItem("email");
+	 $.ajax({
+        url: 'http://myappmarketing.it/amministra/production/editactivity.php',  
+		dataType: "json",
+        type: 'POST',
+		data: { email: usermail, mod: 'modifica' },
+        success: function (data, status) {
+			            $("#riepilogo").hide();
+						$("#modifica").show();
+						$("#mainback").hide();
+						$("#secondaryback").show();
+                        $.each(data, function (i, item) {
+							$("#modifica")
+							.append('<form enctype="multipart/form-data" id="editform"><div class="styled-input"> <input type="text" name="nome2" id="nome2" value="'+item.nome+'" required /><label>Nome*</label><span></span> </div><div class="styled-input"><textarea name="desc2" id="desc2" required >'+item.descrizione+'</textarea><label>Descrizione*</label><span></span> </div> <div class="styled-input"><input type="text" name="tel2" id="tel2" value="'+item.tel+'" required /><label>Telefono*</label><span></span> </div>  <div class="styled-input"> <input type="file" name="file" id="file" /><label>Logo:</label><span></span> </div>    <div class="send"><input type="button" class="submitbtn" name="submit" value="Aggiorna" onClick="update();"></div> </form>');
+						});
+							
+		},
+        error: function (xhr, d, s) {
+						alert("errore: "+s);
+                       // $('#output').empty().html(s);
+                    },
+        beforeSend: function(){
+           $('.loader').show();
+        },
+        complete: function(){
+           $('.loader').hide();
+        }
+		
+        
+    });
+	
+}
+
+function update() {
+    var formData = new FormData();
+    formData.append('up', 'update');
+    formData.append('nome', $("#nome2").val());
+formData.append('desc', $("#desc2").val());
+formData.append('email', usermail);
+formData.append('tel', $("#tel2").val());
+formData.append('file', $('input[type=file]')[0].files[0]);
+	 $.ajax({
+        url: 'http://myappmarketing.it/amministra/production/editactivity.php',  
+        type: 'POST',
+        data: formData,
+        success: function(){
+           alert("ok");
+        },
+        error: function (xhr, d, s) {
+						alert("errore: "+JSON.stringify(xhr)+" "+d+" "+s);
+                       // $('#output').empty().html(s);
+                    },
+        beforeSend: function(){
+           $('.loader').show();
+        },
+        complete: function(){
+           $('.loader').hide();
+        },
+        cache: false,
+        contentType: false,
+        processData: false
+    });
+	
+}
+
 function cancellaOK() {
-	var usermail = window.localStorage.getItem("email");
+	//var usermail = window.localStorage.getItem("email");
     var formData = new FormData();
     formData.append('canc', 'cancella');
     formData.append('email', usermail);
