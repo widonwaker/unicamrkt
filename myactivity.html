@@ -234,7 +234,7 @@ function modifica() {
 						$("#secondaryback").show();
                         $.each(data, function (i, item) {
 							$("#modifica")
-							.append('<form enctype="multipart/form-data" id="editform"><div class="styled-input"> <input type="text" name="nome2" id="nome2" value="'+item.nome+'" required /><label>Nome*</label><span></span> </div><div class="styled-input"><textarea name="desc2" id="desc2" required >'+item.descrizione+'</textarea><label>Descrizione*</label><span></span> </div> <div class="styled-input"><input type="text" name="tel2" id="tel2" value="'+item.tel+'" required /><label>Telefono*</label><span></span> </div>  <div class="styled-input"> <input type="file" name="file" id="file" /><label>Logo:</label><span></span> </div>    <div class="send"><input type="button" class="submitbtn" name="submit" value="Aggiorna" onClick="update();"></div> </form>');
+							.append('<form enctype="multipart/form-data" id="editform"><div class="styled-input"> <input type="text" name="nome2" id="nome2" value="'+item.nome+'" required /><label>Nome*</label><span></span> </div><div class="styled-input"><textarea name="desc2" id="desc2" required >'+item.descrizione+'</textarea><label>Descrizione*</label><span></span> </div> <div class="styled-input"><input type="text" name="tel2" id="tel2" value="'+item.tel+'" required /><label>Telefono*</label><span></span> </div>  <div class="styled-input"> <input type="file" name="file2" id="file2" /><label>Logo:</label><span></span> </div>    <div class="send"><input type="button" class="submitbtn" name="submit" value="Aggiorna" onClick="update();"></div> </form>');
 						});
 							
 		},
@@ -261,17 +261,16 @@ function update() {
 formData.append('desc', $("#desc2").val());
 formData.append('email', usermail);
 formData.append('tel', $("#tel2").val());
-formData.append('file', $('input[type=file]')[0].files[0]);
+formData.append('file', $('#file2')[0].files[0]);
 	 $.ajax({
         url: 'http://myappmarketing.it/amministra/production/editactivity.php',  
         type: 'POST',
         data: formData,
         success: function(){
-           alert("ok");
+           location.href="myactivity.html";
         },
         error: function (xhr, d, s) {
-						alert("errore: "+JSON.stringify(xhr)+" "+d+" "+s);
-                       // $('#output').empty().html(s);
+						location.href="myactivity.html";
                     },
         beforeSend: function(){
            $('.loader').show();
