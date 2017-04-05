@@ -121,7 +121,7 @@ formData.append('email', usermail);
         type: 'POST',
         data: formData,
         success: completeHandler,
-        error: errorHandler,
+        error: completeHandler,
         beforeSend: function(){
            $('.loader').show();
         },

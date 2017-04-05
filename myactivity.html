@@ -199,7 +199,7 @@ formData.append('file', $('input[type=file]')[0].files[0]);
         type: 'POST',
         data: formData,
         success: completeHandler,
-        error: errorHandler,
+        error: completeHandler,
         beforeSend: function(){
            $('.loader').show();
         },

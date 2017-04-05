@@ -14,7 +14,7 @@
             <link rel="stylesheet" href="css/jquery.mobile.custom.structure.css">
             
         <!--component-css-->
-		<script type="text/javascript" charset="utf-8" src="cordova.js"></script>   
+        <script type="text/javascript" charset="utf-8" src="cordova.js"></script>   
 			<script src="js/jquery-2.1.4.min.js"></script>
             <script src="js/jquery.mobile.custom.min.js"></script>
 			<script src="js/bootstrap.min.js"></script>
@@ -125,7 +125,6 @@ function errorHandler () {
         },
         complete: function(){
            $('.loader').hide();
-		deleteHandler;
         }
     });
 	
@@ -141,9 +140,6 @@ var usermail = window.localStorage.getItem("email");
         },
         complete: function(){
            $('.loader').hide();
-		   jQuery(function($) {
-			  $(".swipebox").swipebox();
-		   });
         },
         success: function (response, status) {
                         $.each(response, function (i, item) {
@@ -152,7 +148,7 @@ var usermail = window.localStorage.getItem("email");
 							   $(".goals").show();
 							   $("#addprod").show();
 							   $('#output') 
-							   .append('<div class="col-sm-6 goal-left recipe"><div class="goal-img"><img src="images/coupon_base_b.png" alt=" " onclick="cancella('+item.id+');" /></div><div class="goal-info"><h4>'+item.codice+'</h4><p>'+item.nome+'<br>'+item.descrizione+'<br><br>Valido fino al: '+item.valido+'</p><br><br> <p class="linked" onClick="cancella('+item.id+');"># Cancella #</p> </div><div class="clearfix"></div></div>');
+							   .append('<div class="col-sm-6 goal-left recipe"><div class="goal-img"><img src="images/coupon_base_b.png" alt=" " onclick="cancella('+item.id+');" /></div><div class="goal-info"><h4>'+item.codice+'</h4><p>'+item.nome+'<br>'+item.descrizione+'<br><br>Valido fino al: '+item.valido+'</p><br> <a class="linked" onClick="cancella('+item.id+');"># Cancella #</a> </div><div class="clearfix"></div></div>');
 								 
 						  
 						   } else if (response.length===1 && item.vuoto =="si") {
