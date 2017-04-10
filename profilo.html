@@ -149,14 +149,12 @@ function cancellaOK() {
         url: 'http://myappmarketing.it/amministra/production/approfilo.php',  //Server script to process data
         type: 'POST',
         data: formData,
-        success: deleteHandler,
-        error: errorHandler,
+        //success: deleteHandler,
+        //error: errorHandler,
         beforeSend: function(){
            $('.loader').show();
         },
-        complete: function(){
-           $('.loader').hide();
-        },
+        complete: completeHandler,
         cache: false,
         contentType: false,
         processData: false
