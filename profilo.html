@@ -77,7 +77,9 @@
    
   <script>
 function SuccessDismiss() {
-   location.href='index.html';
+   window.localStorage.removeItem("loggedIn");
+window.localStorage.removeItem("email");
+location.href='index.html';
 }	
 function FailedDismiss() {
     //
@@ -139,7 +141,7 @@ formData.append('email', usermail);
 }
 
 function cancellaOK() {
-	//var usermail = window.localStorage.getItem("email");
+	var usermail = window.localStorage.getItem("email");
     var formData = new FormData();
     formData.append('canc', 'cancella');
     formData.append('email', usermail);
